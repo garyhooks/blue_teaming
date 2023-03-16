@@ -1,14 +1,13 @@
 
 ### Security.evtx
 
-#### Event ID 4624 (Account Successfully Logged In)
-Type 2 Logon from the keyboard of the device
-Type 3 Network Login
-Type 10 Remote Desktop Protocol connections
+Event ID 4624 (Account Successfully Logged In)
+> Type 2 Logon from the keyboard of the device
+> Type 3 Network Login
+? Type 10 Remote Desktop Protocol connections
 
-#### Event ID 4625 (Account failed to login)
-
-#### Event ID 4648: A logon was attempted using explicit credentials
+Event ID 4625 (Account failed to login)
+Event ID 4648: A logon was attempted using explicit credentials
 
 
 ### Microsoft-Windows-TerminalServices-LocalSessionManager/Operational
