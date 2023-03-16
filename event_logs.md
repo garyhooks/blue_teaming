@@ -2,6 +2,7 @@
 ### Security.evtx
 
 Event ID 4624 (Account Successfully Logged In)
+
 + Type 2 Logon from the keyboard of the device
 + Type 3 Network Login
 + Type 10 Remote Desktop Protocol connections
