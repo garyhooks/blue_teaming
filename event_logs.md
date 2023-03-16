@@ -1,3 +1,5 @@
+> EvtxECmd.exe -f "C:\directory\Security.evtx" --csv "C:\directory\to\dump\to"
+
 
 ### Security.evtx
 
