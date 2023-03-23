@@ -1,4 +1,7 @@
-> EvtxECmd.exe -f "C:\directory\Security.evtx" --csv "C:\directory\to\dump\to"
+Output All logs to one csv file
+> EvtxECmd.exe -d C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\ --csv C:\Logs\output\
+
+Output individual log files
 > EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --csv C:\Logs\output\ --csvf Security.csv
 
 
