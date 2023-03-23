@@ -1,4 +1,5 @@
 > EvtxECmd.exe -f "C:\directory\Security.evtx" --csv "C:\directory\to\dump\to"
+> EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --csv C:\Logs\output\ --csvf Security.csv
 
 
 ### Security.evtx
@@ -11,6 +12,7 @@ Event ID 4624 (Account Successfully Logged In)
 
 Event ID 4625 (Account failed to login)  
 Event ID 4648: A logon was attempted using explicit credentials  
+Event ID 5140: A network share object was accessed
 
 
 ### Microsoft-Windows-TerminalServices-LocalSessionManager/Operational
