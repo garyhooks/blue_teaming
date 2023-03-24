@@ -38,7 +38,8 @@ Event ID 1149: User Authentication Succeeded
 Event ID 1158: Remote Desktop Services accepted a connection from IP address <ipAddress>   
 
 
-```<QueryList>
+```
+<QueryList>
   <Query Id="0" Path="file://C:\location\of\logs\Security.evtx">
     <Select Path="file://C:\location\of\logs\Security.evtx">
       *[
