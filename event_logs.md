@@ -37,7 +37,8 @@ Event ID 131: The server accepted a new TCP connection from client
 Event ID 1149: User Authentication Succeeded   
 Event ID 1158: Remote Desktop Services accepted a connection from IP address <ipAddress>   
 
-
+### XML Manual Searching in event viewer 
+  
 ```
 <QueryList>
   <Query Id="0" Path="file://C:\location\of\logs\Security.evtx">
