@@ -18,14 +18,25 @@ Event ID 4624 (Account Successfully Logged In)
 + Type 3 Network Login
 + Type 10 Remote Desktop Protocol connections
 
-Event ID 4625 (Account failed to login)  
+Event ID 4624: Account Login Successfully
+Event ID 4625: Account failed to login
+Event ID 4634: Account Logoff 
 Event ID 4648: A logon was attempted using explicit credentials  
+Event ID 4672: Admin rights
 Event ID 5140: A network share object was accessed
 
+### Microsoft-Windows-Taskcheduler/Operational.evtx
+
+ID 106: Task scheduled
+ID 200: Task executed
+ID 201: Task completed
+ID 141: Task removed
 
 ### Microsoft-Windows-TerminalServices-LocalSessionManager/Operational
 
 Event ID 21: Remote Desktop Services: Session Logon Successful  
+Event ID 23: Remote Desktop Services: Account logoff 
+Event ID 24: Remote Desktop Services: Disconnection
 Event ID 25: Remote Desktop Services: Successful Reconnection   
 
 ### Microsoft-Windows-RemoteDesktopServices-RdpCoreTS/Operational
