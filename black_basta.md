@@ -1,5 +1,6 @@
 https://www.trendmicro.com/vinfo/gb/security/news/ransomware-spotlight/ransomware-spotlight-blackbasta
 https://minerva-labs.com/blog/new-black-basta-ransomware-hijacks-windows-fax-service/
+https://www.sentinelone.com/labs/black-basta-ransomware-attacks-deploy-custom-edr-evasion-tools-tied-to-fin7-threat-actor/
 https://github.com/threatlabz/ransomware_notes/tree/main/blackbasta
 
 ![image](https://user-images.githubusercontent.com/3117532/229059089-1254b7f5-758e-49f9-9597-3a1c1f2d8f61.png)
