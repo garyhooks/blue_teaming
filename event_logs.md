@@ -25,6 +25,11 @@ Event ID 4648: A logon was attempted using explicit credentials
 Event ID 4672: Admin rights
 Event ID 5140: A network share object was accessed
 
+### 
+
+Event ID 5145: Network share object access 
+Event ID 5140: A network share object was accessed
+
 ### Microsoft-Windows-Taskcheduler/Operational.evtx
 
 ID 106: Task scheduled
