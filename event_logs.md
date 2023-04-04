@@ -20,8 +20,8 @@ Output but limit to specific dates (Administrator Privileges needed)
 
 ### Security.evtx
 
-4624: Account Login Successfully
-4625: Account failed to login
+* 4624: Account Login Successfully
+* 4625: Account failed to login
 4634: Account Logoff 
 4648: A logon was attempted using explicit credentials  
 4672: Logon with Admin rights
