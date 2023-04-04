@@ -10,25 +10,46 @@ Output individual log files
 Output but limit to specific dates (Administrator Privileges needed)
 > EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\ --dt yyyy-MM-dd --sd 2023-01-01 --ed 2023-01-03
 
+
+### Get Security event logs
+
+> EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --csv C:\Logs\output\ --csvf Security.csv
+
+Output but limit to specific dates (Administrator Privileges needed)
+> EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\ --dt yyyy-MM-dd --sd 2023-01-01 --ed 2023-01-03
+
 ### Security.evtx
 
-Event ID 4624 (Account Successfully Logged In)  
+4624: Account Login Successfully
+4625: Account failed to login
+4634: Account Logoff 
+4648: A logon was attempted using explicit credentials  
+4672: Logon with Admin rights
+4720: An account was created
+4776: Successful or Failed kerberos authentication
+4778: Session Connected/Reconnected
+4779: Session Disonnected
+5140: A network share object was accessed
 
-+ Type 2 Logon from the keyboard of the device
-+ Type 3 Network Login
-+ Type 10 Remote Desktop Protocol connections
 
-Event ID 4624: Account Login Successfully
-Event ID 4625: Account failed to login
-Event ID 4634: Account Logoff 
-Event ID 4648: A logon was attempted using explicit credentials  
-Event ID 4672: Admin rights
-Event ID 5140: A network share object was accessed
+### Types of Logon (ID 4624)
++ 2 Logon from the keyboard of the device
++ 3 Network Login
++ 4 Batch Logon
++ 5 Windows Service Logon
++ 7 Credentials used to unlock screen;
++ 8 Network logon sending credentials (cleartext)
++ 9 Different credentials used than logged on user
++ 10 Remote Desktop Protocol connections
++ 11 Cached credentials used to logon
++ 12 Cached remote interactive (similar to Type 10)
++ 13 Cached unlock (similar to Type 7)
 
-### 
 
-Event ID 5145: Network share object access 
-Event ID 5140: A network share object was accessed
+### Network Share access:
+
+5145: Network share object access 
+5140: A network share object was accessed
 
 ### Microsoft-Windows-Taskcheduler/Operational.evtx
 
