@@ -16,12 +16,7 @@ HKLM\Software\Microsoft\Windows NT\CurrentVersion\ProductNamne
 
 > volatility_2.6_win64_standalone.exe -f PhysicalMemory --profile=Win2012R2x64 pslist
 
---profile=
-pslist 
 
-...
+### malfind
 
-malfind
-
-...
-
+> volatility_2.6_win64_standalone.exe -f PhysicalMemory --profile=Win2012R2x64 malfind
