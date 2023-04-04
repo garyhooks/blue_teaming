@@ -20,16 +20,28 @@ Output but limit to specific dates (Administrator Privileges needed)
 
 ### Security.evtx
 
-* 4624: Account Login Successfully
-* 4625: Account failed to login
-4634: Account Logoff 
-4648: A logon was attempted using explicit credentials  
-4672: Logon with Admin rights
-4720: An account was created
-4776: Successful or Failed kerberos authentication
-4778: Session Connected/Reconnected
-4779: Session Disonnected
-5140: A network share object was accessed
++ 4624: Account Login Successfully
++ 4625: Account failed to login
+
+### Get Security event logs
+
+> EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --csv C:\Logs\output\ --csvf Security.csv
+
+Output but limit to specific dates (Administrator Privileges needed)
+> EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\ --dt yyyy-MM-dd --sd 2023-01-01 --ed 2023-01-03
+
+### Security.evtx
+
++ 4624: Account Login Successfully
++ 4625: Account failed to login
++ 4634: Account Logoff 
++ 4648: A logon was attempted using explicit credentials  
++ 4672: Logon with Admin rights
++ 4720: An account was created
++ 4776: Successful or Failed kerberos authentication
++ 4778: Session Connected/Reconnected
++ 4779: Session Disonnected
++ 5140: A network share object was accessed
 
 
 ### Types of Logon (ID 4624)
