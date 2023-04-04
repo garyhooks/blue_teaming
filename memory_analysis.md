@@ -29,3 +29,7 @@ Output relevant files into their own directory:
 
 > md malfind_output
 > volatility_2.6_win64_standalone.exe -f PhysicalMemory --profile=Win2012R2x64 malfind -D malfind_output\
+
+#### malfind with Yara Rules
+
+> volatility_2.6_win64_standalone.exe -f PhysicalMemory --profile=Win2012R2x64 yarascan -y "\yara\*"
