@@ -33,3 +33,9 @@ Output relevant files into their own directory:
 #### malfind with Yara Rules
 
 > volatility_2.6_win64_standalone.exe -f PhysicalMemory --profile=Win2012R2x64 yarascan -y "\yara\*"
+
+
+psxview
+
+connscan
+
