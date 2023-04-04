@@ -18,17 +18,6 @@ Output but limit to specific dates (Administrator Privileges needed)
 Output but limit to specific dates (Administrator Privileges needed)
 > EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\ --dt yyyy-MM-dd --sd 2023-01-01 --ed 2023-01-03
 
-### Security.evtx
-
-+ 4624: Account Login Successfully
-+ 4625: Account failed to login
-
-### Get Security event logs
-
-> EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --csv C:\Logs\output\ --csvf Security.csv
-
-Output but limit to specific dates (Administrator Privileges needed)
-> EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\ --dt yyyy-MM-dd --sd 2023-01-01 --ed 2023-01-03
 
 ### Security.evtx
 
