@@ -14,6 +14,8 @@ Output but limit to specific dates (Administrator Privileges needed)
 
 > .\chainsaw_x86_64-pc-windows-msvc.exe hunt .\Security.evtx -s sigma/ --mapping .\mappings\sigma-event-logs-all.yml -r rules/
 
+> .\chainsaw_x86_64-pc-windows-msvc.exe search mimikatz -i .\Security.evtx
+
 ### Get Security event logs
 
 > EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --csv C:\Logs\output\ --csvf Security.csv
