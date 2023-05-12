@@ -10,6 +10,9 @@ Output individual log files
 Output but limit to specific dates (Administrator Privileges needed)
 > EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\ --dt yyyy-MM-dd --sd 2023-01-01 --ed 2023-01-03
 
+### Chainsaw ###
+
+> .\chainsaw_x86_64-pc-windows-msvc.exe hunt .\Security.evtx -s sigma/ --mapping .\mappings\sigma-event-logs-all.yml -r rules/
 
 ### Get Security event logs
 
