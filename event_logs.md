@@ -1,5 +1,5 @@
 Output All logs to one csv file
-> EvtxECmd.exe -d C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\ --csv C:\Logs\output\ --csvf eventlogs.csv
+> C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\EvtxECmd.exe -d C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\ --csv C:\Logs\output\ --csvf eventlogs.csv
 
 Output XML files
 > EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\
