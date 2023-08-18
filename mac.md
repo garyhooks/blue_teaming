@@ -3,6 +3,19 @@
 ### Download:
 > https://github.com/orlikoski/CyLR/releases/tag/2.2.0
 
+### Disable csrutil
+It may be best to disable system integrity protection (SIP) temporarily:
+
+```
+1. Restart and put into recovery mode (often command+r)
+2. Launch terminal from Utilities menu
+3. Run command _csrutil disable_
+4. Restart computer
+```
+
+To renable do the same but run _csrutil enable_
+
+
 ### Config file
 ```
 glob  **\Users\**
@@ -38,5 +51,6 @@ Run a "stat" on each file to get the access time:
 Narrow down the results to a specific date:
 
 > grep "Mar 31 21:" accessTimes.txt
+
 
 
