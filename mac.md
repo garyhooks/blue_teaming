@@ -18,6 +18,7 @@ glob  **\var\**
 ### Automatic Upload
 -c specifies to ONLY use the directories included
 -d specifies to use default settings PLUS the extra directories included in configuration file
+
 > sudo ./CyLR -u username -p password -s 8.8.8.8 -of filename.zip -c config.txt
 
 > sudo ./CyLR -u username -p password -s 8.8.8.8 -of filename.zip -d config.txt
