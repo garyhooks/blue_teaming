@@ -1,2 +1,34 @@
-fdsafsad
-fdsafsdafa
+
+### Security Stack
+
+1. Can you describe your main security tools across the business
+  a. EDR tools
+  b. SIEM
+  c. Anti-Virus
+  d. Firewall
+  e. DLP
+  f. Email filtering 
+3. Are these tools distributed across the entire network or are some hosts using different versions or software?
+
+### Network Layout
+
+1. Can you supply a network diagram?
+2. Describe the layout of the network
+3. Do you have the network segmented, either physically or logically?
+4. What cloud infrastructure are you using?
+
+### Crown Jewels
+1. What would you say your most important data or information is?
+2. Where is this stored, e.g. database or file server, cloud?
+3. How is it current protected?
+
+### Backups
+
+1. What are your backup procedures?
+2. Do you have a written down policy on this?
+3. Where are they stored?
+4. Do you utilise the 321 or similar models to store data across a variety of locations and types?
+5. How would the data be recovered if required?
+6. Are your backups tested at all?
+7. Could a threat actor access your backups if they were to gain unauthorised access to your main network?
+
