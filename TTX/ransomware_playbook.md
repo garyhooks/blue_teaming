@@ -1,14 +1,11 @@
-Checklist for SOC while Ransomware attack
 
-While dealing with a ransomware attack in a Security Operations Center (SOC), consider the following checklist:
+1.Isolate Infected Systems: Immediately isolate affected systems from the network to prevent the ransomware from spreading further.
 
-1# Isolate Infected Systems: Immediately isolate affected systems from the network to prevent the ransomware from spreading further.
+2.Alert Management: Notify relevant stakeholders, including management, legal, and IT teams, about the attack.
 
-2#.Alert Management: Notify relevant stakeholders, including management, legal, and IT teams, about the attack.
+3.Gather Information: Document all available information about the attack, including the ransom note, malware samples, and affected systems.
 
-3#.Gather Information: Document all available information about the attack, including the ransom note, malware samples, and affected systems.
-
-4#. Engage Incident Response Team: If available, involve your incident response team to lead the investigation and recovery efforts.
+4. Engage Incident Response Team: If available, involve your incident response team to lead the investigation and recovery efforts.
 
 5#.Assessment: Determine the scope and impact of the attack on your systems and data.
 
