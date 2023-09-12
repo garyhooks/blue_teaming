@@ -32,3 +32,10 @@
 6. Are your backups tested at all?
 7. Could a threat actor access your backups if they were to gain unauthorised access to your main network?
 
+
+### Delivery
+
+1. Remote or in-person?
+2. How many people will be taking part?
+3. Who are the audience - technical/non-technical and general positions?
+4. Duration (3-4 hours max)
