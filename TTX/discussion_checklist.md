@@ -1,7 +1,7 @@
 
 ### Security Stack
 
-1. Can you describe your main security tools across the business
+1. Can you describe your main security tools across the business  
     2. EDR tools
     3. SIEM
     4. Anti-Virus
