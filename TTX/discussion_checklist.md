@@ -3,11 +3,11 @@
 
 1. Can you describe your main security tools across the business  
     2. EDR tools  
-    3. SIEM  
-    4. Anti-Virus  
-    5. Firewall  
-    6. DLP  
-    7. Email filtering     
+    3. SIEM    
+    4. Anti-Virus    
+    5. Firewall    
+    6. DLP    
+    7. Email filtering       
 2. Are these tools distributed across the entire network or are some hosts using different versions or software?
 
 ### Network Layout
