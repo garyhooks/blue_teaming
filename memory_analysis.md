@@ -34,6 +34,13 @@ Output relevant files into their own directory:
 
 > volatility_2.6_win64_standalone.exe -f PhysicalMemory --profile=Win2012R2x64 yarascan -y "\yara\*"
 
+### netscan
+
+> vol.py -f C:\Win10x64_xyz.img --profile=Win10x64_xyz netscan >> C:\out.txt
+
+This can be quite a messy output, so you can format it using findstr
+
+> vol.py -f C:\Win10x64_xyz.img --profile=Win10x64_xyz netscan | findstr /i example.exe >> C:\out.txt
 
 psxview
 
