@@ -51,7 +51,7 @@ These can be found using handles in volatility. Pay particular attention to IP a
 
 ## Sysmon
 
-If in use within an environment it can be very useful, such as for named pipes. Within the configuration you can turn on "Named Pipe Detection" and you will start to receive Event ID 17 (Pipe COnnected) and 18 (Pipe Created). 
+If in use within an environment it can be very useful, such as for named pipes. Within the configuration you can turn on "Named Pipe Detection" and you will start to receive Event ID 17 (Pipe Connected) and 18 (Pipe Created). 
 
 ## PowerShell
 
