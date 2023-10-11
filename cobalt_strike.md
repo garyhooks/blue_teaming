@@ -1,6 +1,7 @@
 ## Resources:
-https://www.youtube.com/watch?v=borfuQGrB8g
-https://attack.mitre.org/software/S0154/
+https://www.youtube.com/watch?v=borfuQGrB8g  
+https://attack.mitre.org/software/S0154/  
+https://redcanary.com/threat-detection-report/threats/cobalt-strike/  
 
 ## rundll32
 
