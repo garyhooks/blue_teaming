@@ -78,3 +78,8 @@ Default logging is available under Powershell.evtx and PowerShell/Operational ev
 
 4103: Module/Pipeline output  
 4104: Codes or Scripts executed by PowerShell - pay particular attention to *Warning* events  
+
+Search for:
+* 127.0.0.1
+* IEX
+* Encoded-Command
