@@ -76,5 +76,5 @@ Default logging is available under Powershell.evtx and PowerShell/Operational ev
 
 ## Event Logs
 
-4103: Module/Pipeline output
-4104: Codes or Scripts executed by PowerShell - pay particular attention to *Warning* events
+4103: Module/Pipeline output  
+4104: Codes or Scripts executed by PowerShell - pay particular attention to *Warning* events  
