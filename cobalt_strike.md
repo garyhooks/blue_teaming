@@ -37,6 +37,7 @@ Florian Roth produces a lot of Yara scripts, particularly for Cobalt Strike
 ## Pipes
 
 Named pipes can be named anything and it's an easy way for malware to find
+Although named pipes can be changed, they're often not - like general malware, often threat actors use default settings
 Cobalt Strike uses default named pipes including:
 * \\.\pip\MSSE-####-server
 * \\<target>\pip\msagent_##
@@ -44,3 +45,36 @@ Cobalt Strike uses default named pipes including:
 * \\.\pipe\postex_ssh_####
 * \\.\pipe\####### (7-10 characters)
 * \\.\pipe\postex_####
+
+These can be found using handles in volatility. Pay particular attention to IP addresses.
+> volatility_2.6_win64_standalone.exe -f PhysicalMemory --profile=Win2012R2x64 handles -p 1234 -t file | grep -i pipe
+
+## Sysmon
+
+If in use within an environment it can be very useful, such as for named pipes. Within the configuration you can turn on "Named Pipe Detection" and you will start to receive Event ID 17 (Pipe COnnected) and 18 (Pipe Created). 
+
+## PowerShell
+
+Cobalt Strike makes heavy use of this. Will often utilise:
+* winrm
+* wmi
+* psinject
+* powerpick (does not use powershell.exe - injects directly to memory)
+* powershell-import
+* psexec_psh
+
+PowerShell auditing and logging should be enabled using Administrative Template under Group Policy
+Default logging is available under Powershell.evtx and PowerShell/Operational event logs
+
+*Download Cradle* is used by Cobalt Strike, PowerShell Empire and PowerSploit. Usually the host will connect remotely, download script and run. 
+
+### Other indicators with PowerShell
+* Look out for a connection to loopback/127/0.0.1
+*-EncodedCommand* may be used within the PowerShell commandline
+*IEX* or Invoke-Expression which often connects to a remote domain
+* Which UserId ran the command?
+
+## Event Logs
+
+4103: Module/Pipeline output
+4104: Codes or Scripts executed by PowerShell - pay particular attention to *Warning* events
