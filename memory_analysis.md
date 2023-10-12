@@ -6,7 +6,7 @@ This can take several hours depending on the size of the image
 
 > volatility_2.6_win64_standalone.exe imageinfo -f PhysicalMemory
 
-### Check Operating Systme Version: 
+### Check Operating System Version: 
 
 Open Software registry file in Registry Explorer (C\Windows\System32\config\SOFTWARE)
 HKLM\Software\Microsoft\Windows NT\CurrentVersion\ProductNamne
