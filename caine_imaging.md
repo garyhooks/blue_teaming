@@ -23,4 +23,17 @@ Image drive and ignore any bitlocker encryption - we can decrypt this afterwards
 9) Right click on the target drive and select "Acquire Image"
 10) Select the destination as /media/storage, enter filename and select start
 
+# Viewing Bitlocker encrypted data within Caine before imaging
+
+1) lsblk to identify the windows drive - probably /dev/nvme0n1p3 or similar
+2) sudo mkdir /media/bitlocker
+3) sudo mkdir /media/bitlockermount
+4) sudo dislocker /dev/nvme0n1p3 -p<BITLOCKER-KEY-HERE> -- /media/bitlocker
+5) sudo mount -o loop /media/bitlocker/dislocker-file /media/bitlockermount/
+
+Then you need a destination drive to copy data to:
+
+1) lsblk to identify
+2) sudo mkdir /media/destinationdrive
+3) sudo mount /dev/sdc2 /media/destinationdrive
 
