@@ -7,6 +7,12 @@ If using a Microsoft Surface laptop, you can access bios using the *volume up* k
 Write iso file to USB stick using Rufus:
 > https://rufus.ie/en/
 
+OR use Etcher:
+
+> https://etcher.balena.io/#download-etcher
+
+*IMPORTANT*: It is best to use dd writing than ISO as it is more reliable when booting up
+
 Image drive and ignore any bitlocker encryption - we can decrypt this afterwards using Arsenal Recon - paid for product but you can mount image without a key:
 > https://arsenalrecon.com/products/arsenal-image-mounter/downloads
 
