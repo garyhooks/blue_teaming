@@ -8,7 +8,7 @@ SigninLogs
 | project TimeGenerated, Location, IPAddress, UserAgent
 ```
 
-```
+```kql
 SigninLogs
 | where TimeGenerated > ago(1d)
 | where ResultType != 0
@@ -16,7 +16,7 @@ SigninLogs
 ```
 
 Find logins where an error occurs, and they are NOT a member of the organisation:
-```
+```kql
 SigninLogs
 | where TimeGenerated > ago(1d)
 | where ResultType != 0
