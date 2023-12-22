@@ -41,6 +41,16 @@ Produce a piechart of the results:
 
 ### Security Alerts
 
+Find top 20 Alerts and order by the count
+```kql
+SecurityAlert
+| where TimeGenerated > ago (30d)
+| where ProviderName != "ASI Scheduled Alerts"
+| summarize Count=count() by AlertName
+| top 20 by Count
+```
+
+
 Find phishing attempts and sort by user
 
 ```kql
