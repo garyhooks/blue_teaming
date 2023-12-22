@@ -50,7 +50,7 @@ SecurityAlert
 | extend User = tostring(Entities.MailboxPrimaryAddress)
 | summarize ['Count of Phishing Attempts']=count()by User
 | order by ['Count of Phishing Attempts'] desc
-
+```
 
 Find suspicious and malicious logins
 ```kql
