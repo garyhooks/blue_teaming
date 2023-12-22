@@ -50,6 +50,51 @@ SecurityAlert
 | top 20 by Count
 ```
 
+Find top 20 alerts where severity is high
+```kql
+SecurityAlert
+| where TimeGenerated > ago (30d)
+| where ProviderName != "ASI Scheduled Alerts" and AlertSeverity == "High"
+| summarize Count=count() by AlertName
+| top 20 by Count
+```
+
+Top 20 users generating identity alerts
+```kql
+SecurityAlert
+| where TimeGenerated > ago (30d)
+| where ProviderName in ("OATP","IPC","Azure Advanced Threat Protection","MCAS")
+| summarize Count=count() by CompromisedEntity
+| where CompromisedEntity != "CompromisedEntity" and isnotempty( CompromisedEntity)
+| top 20 by Count
+```
+
+Top 20 devices triggering high severity defender alerts:
+```kql
+SecurityAlert
+| where TimeGenerated > ago (30d)
+| where ProviderName == "MDATP" and AlertSeverity == "High"
+| summarize Count=count() by CompromisedEntity
+| where CompromisedEntity != "CompromisedEntity" and isnotempty( CompromisedEntity)
+| top 20 by Count
+```
+
+
+Emails with malicious URLs after delivery:
+```kql
+SecurityAlert
+| where TimeGenerated > ago(365d)
+| where ProviderName == "OATP"
+| where AlertName in ("Email messages containing malicious URL removed after delivery​","Email messages containing phish URLs removed after delivery")
+| mv-expand todynamic(Entities)
+| extend MaliciousURL = tostring(Entities.Url)
+| project MaliciousURL
+| parse-where MaliciousURL with * "//" ['Malicious Domain'] "/" *
+| summarize Count=count() by ['Malicious Domain']
+| sort by Count desc 
+| render barchart
+```
+
 
 Find phishing attempts and sort by user
 
