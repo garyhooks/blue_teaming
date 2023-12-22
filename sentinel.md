@@ -2,7 +2,7 @@
 
 ### Sign In Logs
 
-```
+```kql
 SigninLogs
 | where TimeGenerated > ago(3d)
 | project TimeGenerated, Location, IPAddress, UserAgent
