@@ -24,9 +24,10 @@ SigninLogs
 | project TimeGenerated, ResultType, ResultDescription, UserPrincipalName, UserType, AppDisplayName
 ```
 
-IPAddress
-User Display Name: Bob Jones
-UserPrincipalName: first.last@company.com
-UserType: Member or Guest
-ResultType: 0 = Successful 
-AppDisplayName: Office365, TeamViewer, Windows Sign In, etc. 
+##### Key Fields:
+* IPAddress
+* User Display Name: Bob Jones
+* UserPrincipalName: first.last@company.com
+* UserType: Member or Guest
+* ResultType: 0 = Successful 
+* AppDisplayName: Office365, TeamViewer, Windows Sign In, etc. 
