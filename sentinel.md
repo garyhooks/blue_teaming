@@ -42,6 +42,7 @@ Produce a piechart of the results:
 ### Security Alerts
 
 Find phishing attempts and sort by user
+
 ```kql
 SecurityAlert
 | where TimeGenerated > ago (5d)
