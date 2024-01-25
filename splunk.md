@@ -1,6 +1,8 @@
 
 If you have a filesize limit, you can split the files up using this command:
-> split -b 500m TheBigFile.csv chosen_prefix-
+```
+split -b 500m TheBigFile.csv chosen_prefix-
+```
 This will then output all the files with the chosen_prefix and an incremental hex value afterwards
 
 A better command is this:
