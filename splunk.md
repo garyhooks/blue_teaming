@@ -3,6 +3,12 @@ If you have a filesize limit, you can split the files up using this command:
 > split -b 500m TheBigFile.csv chosen_prefix-
 This will then output all the files with the chosen_prefix and an incremental hex value afterwards
 
+A better command is this:
+> find . -maxdepth 1 -type f -name "start_of_filename_*.csv" -exec split -b 500m {} {} \;
+This will split into 500mb sizes, and will retain the original file names
+For example:
+File: HugeFile.csv becomes HugeFile.csvaa / HugeFile.csvab / HugeFile.csvac and so on
+
 
 
 dedup = Removes the events that contain an identical combination of values for the fields that you specify
