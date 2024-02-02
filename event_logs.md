@@ -32,6 +32,8 @@ Output but limit to specific dates (Administrator Privileges needed)
 + 4648: A logon was attempted using explicit credentials  
 + 4672: Logon with Admin rights
 + 4720: An account was created
++ 4769: A Kerberos service ticket was requested (Can indicate kerberoasting)
++ 4770: A Kerberos service ticket was renewed (Can indicate kerberoasting)
 + 4776: Successful or Failed kerberos authentication
 + 4778: Session Connected/Reconnected
 + 4779: Session Disonnected
