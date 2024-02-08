@@ -10,6 +10,14 @@ Output individual log files
 Output but limit to specific dates (Administrator Privileges needed)
 > EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\ --dt yyyy-MM-dd --sd 2023-01-01 --ed 2023-01-03
 
+### Hayabusa
+
+> hayabusa-2.12.0-win-x64.exe logon-summary --directory "C:\Users\blah\Logs" --output "logon-summary.csv" --UTC
+
+> hayabusa-2.12.0-win-x64.exe search --directory "E:\New_Uploads\@eventlogs" --output "search.csv" --keyword "mega.nz"
+
+> hayabusa-2.12.0-win-x64.exe csv-timeline --directory "E:\New_Uploads\@eventlogs" --output "timeline.csv"
+
 ### Chainsaw ###
 
 > .\chainsaw_x86_64-pc-windows-msvc.exe hunt .\Security.evtx -s sigma/ --mapping .\mappings\sigma-event-logs-all.yml -r rules/
