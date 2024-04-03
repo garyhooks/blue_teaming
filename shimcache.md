@@ -3,4 +3,17 @@ https://bromiley.medium.com/windows-wednesday-shim-cache-1997ba8b13e7
 
 # Overview
 
-Also known as AppCompatCache, this is available on all Windows systems since XP onwards. 
+Also known as AppCompatCache, this is available on all Windows systems since XP onwards. Depending on the operating system, it can be stored in two different locations:
+
+* XP: HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatibility\AppCompatCache
+* Later versions: HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache\AppCompatCache
+
+### Limitations
+
+There are limitations depending on OS again:
+
+|   | XP  | Later Versions |
+|---|---|---|
+| Records stored  |  96  |  1024  |
+|   |   |   |
+|   |   |   |
