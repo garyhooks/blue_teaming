@@ -8,12 +8,12 @@ Also known as AppCompatCache, this is available on all Windows systems since XP 
 * XP: HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatibility\AppCompatCache
 * Later versions: HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache\AppCompatCache
 
-### Limitations
+## Limitations
 
 There are limitations depending on OS again:
 
-|   | XP  | Later Versions |
-|---|---|---|
-| Records stored  |  96  |  1024  |
-|   |   |   |
-|   |   |   |
+* XP: 96 entries
+* Windows Server 2003: 512 entries
+* Later versions: 1024 entries
+
+
