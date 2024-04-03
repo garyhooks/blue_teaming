@@ -18,4 +18,8 @@ There are limitations depending on OS again:
 | Server 2003 | 512 |
 | Later versions | 1024 |
 
+## Examining the Shimcache
 
+```
+AppCompatCacheParser.exe -f C:\Windows\System32\config\SYSTEM --csv output
+```
