@@ -12,8 +12,9 @@ Also known as AppCompatCache, this is available on all Windows systems since XP 
 
 There are limitations depending on OS again:
 
-* XP: 96 entries
-* Windows Server 2003: 512 entries
-* Later versions: 1024 entries
+| OS | Maximum Entries |
+| XP | 96 |
+| Server 2003 | 512 |
+| Later versions | 1024 |
 
 
