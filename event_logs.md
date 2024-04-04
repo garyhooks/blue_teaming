@@ -41,7 +41,8 @@ Output but limit to specific dates (Administrator Privileges needed)
 + 4624: Account Login Successfully
 + 4625: Account failed to login
 + 4634: Account Logoff 
-+ 4648: A logon was attempted using explicit credentials  
++ 4648: A logon was attempted using explicit credentials
++ 4663: An attempt was made to access an object
 + 4672: Logon with Admin rights
 + 4720: An account was created
 + 4769: A Kerberos service ticket was requested (Can indicate kerberoasting)
