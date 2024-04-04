@@ -2,6 +2,7 @@ Good cheatsheet: https://blog.onfvp.com/post/volatility-cheatsheet/
 
 # Volatility 3
 
+```
 python.exe vol.py -f "D:\mem.dmp" windows.info.Info > C:\vol_windows.Info.txt
 python.exe vol.py -f "D:\mem.dmp" -r pretty windows.getsids > C:\vol_getsids.txt
 python.exe vol.py -f "D:\mem.dmp" -r pretty windows.netscan.NetScan > C:\vol_netscan.txt
@@ -11,6 +12,7 @@ python.exe vol.py -f "D:\mem.dmp" -r pretty windows.malfind.MalFind > C:\vol_mal
 python.exe vol.py -f "D:\mem.dmp" windows.cmdline > C:\vol_windows.cmdline.txt
 python.exe vol.py -f "D:\mem.dmp" -r pretty windows.pstree.PsTree > C:\vol_PsTree.txt
 python.exe vol.py -f "D:\mem.dmp" windows.info.Info
+```
 
 # Volatility 2
 
