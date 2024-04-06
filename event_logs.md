@@ -14,6 +14,9 @@ Output but limit to specific dates (Administrator Privileges needed)
 
 ### Hayabusa
 
+Download here: 
+> https://github.com/Yamato-Security/hayabusa/releases
+
 > hayabusa-2.12.0-win-x64.exe update-rules
 
 > hayabusa-2.12.0-win-x64.exe logon-summary --directory "C:\Users\blah\Logs" --output "logon-summary.csv" --UTC
