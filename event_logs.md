@@ -17,6 +17,11 @@ Output but limit to specific dates (Administrator Privileges needed)
 Get Yara rules from here:
 > https://github.com/reversinglabs/reversinglabs-yara-rules
 
+Mount target drive using Arsenal Mounter
+
+Scan E: drive:
+> thor.exe -p "E:" 
+
 ### Hayabusa
 
 Download here: 
