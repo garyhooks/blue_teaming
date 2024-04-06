@@ -12,6 +12,11 @@ Output individual log files
 Output but limit to specific dates (Administrator Privileges needed)
 > EvtxECmd.exe -f C:\Users\garyh\Documents\Tools\Zimmerman\EvtxECmd\Logs\Security.evtx --xml C:\Logs\output\ --dt yyyy-MM-dd --sd 2023-01-01 --ed 2023-01-03
 
+### Thor
+
+Get Yara rules from here:
+> https://github.com/reversinglabs/reversinglabs-yara-rules
+
 ### Hayabusa
 
 Download here: 
