@@ -26,6 +26,36 @@ Search for failed password authentication across organisation
 
 ### Starting Commands
 
+#### AbuseDB
+Documentation: https://splunkbase.splunk.com/app/7173
+
+IP Abuse Scores 
+```
+index=iis 
+| dedup c_ip
+| head 20
+| abuseipdb mode=check ip=c_ip age=365
+| sort - abuseipdb_abuseScore
+| table c_ip abuseipdb_abuseScore
+abuseipdb_company
+abuseipdb_country
+abuseipdb_domain
+abuseipdb_nbrReports
+abuseipdb_tor
+abuseipdb_type
+abuseipdb_usage
+
+
+IP Confidence Score
+```
+index=iis 
+| dedup c_ip
+| head 20
+| abuseipdb mode=blacklist ip=c_ip age=365
+| sort - abuseipdb_abuseScore
+| table *
+```
+
 Search for executables within a custom string field
 ```
 $index$ | search  "Device Custom String2"="*evil.exe*" OR "File Name"="*other_evil.exe*"
