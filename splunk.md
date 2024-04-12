@@ -75,3 +75,9 @@ $index$| search "Device Custom String1"="User logon with misspelled or bad passw
 
 Detect Kerberoasting
 > index=events EventCode=4769 Service_Name!="*$" Ticket_Encryption_Type=0x17
+
+> time analysis 
+| bucket
+
+Single Value in Dashboard - where no results received use this to input 0 instead of error:
+> | appendpipe [stats count | where count=0]
