@@ -72,3 +72,6 @@ $index$| search "Device Custom String1"="User logon with misspelled or bad passw
 | sort -_time
 | dedup _time, "Destination Host Name", "Destination User Name", "Device Custom String1", "Device Custom String4", "Source Address"
 ```
+
+Detect Kerberoasting
+> index=events EventCode=4769 Service_Name!="*$" Ticket_Encryption_Type=0x17
