@@ -1,3 +1,6 @@
+Change date format:
+
+> timeformat="%Y-%m-%d" ctime(_time) AS date
 
 If you have a filesize limit, you can split the files up using this command:
 ```
