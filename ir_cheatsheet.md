@@ -12,7 +12,7 @@ Mount image in Arsenal Mounter
 
 ## Step 2
 Upload Kape to analysis machine
-> D:\sftp\kape\kape.exe --tsource H: --tdest D:\kape_output --tflush --target !SANS_Triage
+> D:\sftp\kape\kape.exe --tsource H: --tdest D:\kape_output --tflush --target !SANS_Triage --vss
  
 ## Step 3
 Get all event logs into a single CSV
