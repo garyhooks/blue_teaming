@@ -16,11 +16,23 @@ Upload Kape to analysis machine
  
 ## Step 3
 Get all event logs into a single CSV
-
 > C:\Tools\Get-ZimmermanTools\EvtxECmd -d D:\kape_output\Windows\System32\winevt\logs --csv D:\ --csvf eventlogs.csv
+
+Event Ripper
 
 ## Step 4
 Hayabusa 
+
+## Step 5
+Process in X-Ways
+
+## Step 6
+Process in Axiom
+
+## Step 7
+Index in Splunk
+
+
 
 ## Shimcache
 
