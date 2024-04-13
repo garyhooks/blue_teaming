@@ -1,4 +1,12 @@
 
+Record basic information:
+1) Operating System
+2) Build Number
+3) Installation Date
+4) Shutdown Date
+5) Timezone
+6) List of users and GUIDs
+
 ## Step 1
 Mount image in Arsenal Mounter
 
