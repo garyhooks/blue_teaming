@@ -1,6 +1,6 @@
-Change date format:
+Create a Visualization of activity based on date:
 
-> timeformat="%Y-%m-%d" ctime(_time) AS date
+> index=blah EventCode=4625 | convert timeformat="%Y-%m-%d" ctime(_time) AS date | timechart count by date
 
 If you have a filesize limit, you can split the files up using this command:
 ```
