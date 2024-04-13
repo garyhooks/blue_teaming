@@ -1,4 +1,6 @@
 
+kape.exe --tsource H: --tdest D:\kape_test --tflush --target !SANS_Triage
+
 ## Shimcache
 
 > HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache\AppCompatCache
