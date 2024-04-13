@@ -7,7 +7,12 @@ Upload Kape to analysis machine
 > D:\sftp\kape\kape.exe --tsource H: --tdest D:\kape_output --tflush --target !SANS_Triage
  
 ## Step 3
-C:\Tools\Get-ZimmermanTools\EvtxECmd -d D:\kape_output\Windows\System32\winevt\logs --csv D:\ --csvf eventlogs.csv
+Get all event logs into a single CSV
+
+> C:\Tools\Get-ZimmermanTools\EvtxECmd -d D:\kape_output\Windows\System32\winevt\logs --csv D:\ --csvf eventlogs.csv
+
+## Step 4
+Hayabusa 
 
 ## Shimcache
 
