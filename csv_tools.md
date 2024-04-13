@@ -7,6 +7,8 @@
 
 ## Merge multiple CSVs into one Excel File 
 
+Remember to add a backslash on target directory
+
 ```
 Sub MergeCSV()
     'Author:    Jerry Beaucaire
@@ -32,6 +34,7 @@ Sub MergeCSV()
             wbMST.Sheets(ActiveSheet.Name).Delete                       'delete sheet if it exists
             ActiveSheet.Move After:=wbMST.Sheets(wbMST.Sheets.Count)    'move new sheet into Mstr
             Columns.AutoFit             'clean up display
+            Selection.AutoFilter
             fCSV = Dir                  'ready next CSV
         Loop
       
