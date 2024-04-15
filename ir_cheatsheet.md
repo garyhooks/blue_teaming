@@ -10,6 +10,8 @@ Record basic information:
 ## Step 1
 Mount image in Arsenal Mounter
 
+> aim_cli /mount /fakesig /filename=D:\myfile.E01 /provider=libewf /writeoverlay=D:\myfile.E01.diff /autodelete
+
 ## Step 2
 Upload Kape to analysis machine
 > D:\sftp\kape\kape.exe --tsource H: --tdest D:\kape_output --tflush --target !SANS_Triage --vss
