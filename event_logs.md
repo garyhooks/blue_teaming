@@ -32,13 +32,17 @@ Scan E: drive:
 Download here: 
 > https://github.com/Yamato-Security/hayabusa/releases
 
+> hayabusa-2.12.0-win-x64.exe csv-timeline --directory "E:\New_Uploads\@eventlogs" --output "timeline.csv"
+
+You can also skip the wizard and do a full core++ scan:
+
+> hayabusa-2.12.0-win-x64.exe csv-timeline --directory "E:\New_Uploads\@eventlogs" --output "timeline.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard
+
 > hayabusa-2.12.0-win-x64.exe update-rules
 
 > hayabusa-2.12.0-win-x64.exe logon-summary --directory "C:\Users\blah\Logs" --output "logon-summary.csv" --UTC
 
 > hayabusa-2.12.0-win-x64.exe search --directory "E:\New_Uploads\@eventlogs" --output "search.csv" --keyword "mega.nz"
-
-> hayabusa-2.12.0-win-x64.exe csv-timeline --directory "E:\New_Uploads\@eventlogs" --output "timeline.csv"
 
 ### Chainsaw ###
 
