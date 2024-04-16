@@ -2,6 +2,8 @@ Change default search range:
 
 > http://127.0.0.1:8000/en-US/manager/system/searchprefs
 
+Good commands - https://github.com/EvolvingSysadmin/Splunk-Tools
+
 Create a Visualization of activity based on date:
 
 > index=blah EventCode=4625 | convert timeformat="%Y-%m-%d" ctime(_time) AS date | timechart count by date
