@@ -53,19 +53,12 @@ Invoke-Expression -Command "$mytools\AppCompatCacheParser.exe -f $output_directo
 # Shimcache/Amcache
 Write-Host `n"[*] Parsing Amcache now..."
 Invoke-Expression -Command "$mytools\AmcacheParser.exe -f $output_directory\${evidence_source}\Windows\appcompat\Programs\Amcache.hve -i --csv $output_directory\AmCacheResults\ --csvf amcache.csv"
-#>
+
 
 # Events Ripper: https://github.com/keydet89/Events-Ripper
 Write-Host `n"[*] Running Events Ripper now..."
 cd "$mytools\Events-Ripper\"
-#Invoke-Expression -Command "$mytools\Events-Ripper\wevtx.bat $output_directory\${evidence_source}\Windows\System32\winevt\logs\*.evtx $output_directory\all_eventlogs.txt"
-Invoke-Expression -Command "$mytools\Events-Ripper\erip.exe -f $output_directory\all_eventlogs.txt -a" > event_ripper_results.csv
+Invoke-Expression -Command "$mytools\Events-Ripper\wevtx.bat $output_directory\${evidence_source}\Windows\System32\winevt\logs\*.evtx $output_directory\all_eventlogs.txt"
+Invoke-Expression -Command "$mytools\Events-Ripper\erip.exe -f $output_directory\all_eventlogs.txt -a" > $output_directory\event_ripper_results.csv
+#>
 
-# CSV formatting and changing
- 
-
-#https://github.com/secure-cake/rapid-endpoint-investigations/blob/main/KAPE_Rapid_Triage_Excel_Output_Rev3.ps1
-
-
-# SPlunk
-#splunk.exe install app D:\downloads\have-i-been-pwned-domain-search_111.tgz
