@@ -2,6 +2,19 @@ Change default search range:
 
 > http://127.0.0.1:8000/en-US/manager/system/searchprefs
 
+Line chart:
+
+```
+index=events ComputerName=* Account_Name=*** EventCode IN ($event_code_input$) | convert timeformat="%Y-%m-%d" ctime(_time) AS date 
+| timechart count by EventCode
+| rename "4625" AS "Failed Login (4625)", "4624" AS "Successful Login (4624)", 
+"4672" AS "Logon with Admin Rights (4672)",
+"4720" AS "Account was created (4720)",
+"4769" AS "Kerberos ticket requested (4769)",
+"4770" AS "Kerberos ticket renewed (4770)",
+"5140" AS "Network share object accessed (5140)"
+```
+
 Good commands - https://github.com/EvolvingSysadmin/Splunk-Tools
 
 Create a Visualization of activity based on date:
