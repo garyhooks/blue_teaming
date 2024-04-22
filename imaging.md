@@ -18,14 +18,16 @@ Image drive and ignore any bitlocker encryption - we can decrypt this afterwards
 
 # Running Caine
 
+Microsoft Surface bios: hold down F4 (Volume Up) as you turn on computer 
+
 1) In Bios: Disable Secure Boot: Secure Boot Configuration - Remove security setting so that any software can boot
 2) On the boot menu select "Start Caine"
 3) Attach destination drive to device
-4) Open guymager - the destination device will be something similar to /dev/sdb or /dev/sdc
-5) Open terminal and run command *sudo fdisk /dev/sdc* (or whatever your destination drive is called)
-6) Enter *p* to print partitions and make note of the partition which is ready for data, e.g. */dev/sdc2*
+4) Open guymager in order to find the correct drive - the destination device will be something similar to /dev/sdb or /dev/sdc
+5) Open terminal and run command *sudo fdisk /dev/sdb* (or whatever your destination drive is called)
+6) Enter *p* to print partitions and make note of the partition which is ready for data, e.g. */dev/sdb2*
 7) *sudo mkdir /media/storage*
-8) *sudo mount /dev/sdc2 /media/storage* 
+8) *sudo mount /dev/sdb2 /media/storage* 
 9) Right click on the target drive and select "Acquire Image"
 10) Select the destination as /media/storage, enter filename and select start
 
