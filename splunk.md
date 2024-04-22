@@ -1,3 +1,5 @@
+> C:\Program Files\Splunk\bin\splunk.exe add index events
+
 Change default search range:
 
 > http://127.0.0.1:8000/en-US/manager/system/searchprefs
