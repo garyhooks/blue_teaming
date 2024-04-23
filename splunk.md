@@ -4,6 +4,10 @@ Change default search range:
 
 > http://127.0.0.1:8000/en-US/manager/system/searchprefs
 
+Overview of timeline:
+
+> index=events | convert timeformat="%Y-%m-%d" ctime(_time) AS date | timechart count by date
+
 Line chart:
 
 ```
