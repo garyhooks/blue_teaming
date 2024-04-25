@@ -48,3 +48,8 @@ Get Amcache Hive from \Windows\appcompat\Programs\Amcache.hve
 change machine_name to label the results properly
 
 > AmcacheParser.exe -f "D:\Amcache.hve" -i --csv D:\AmCacheResults --csvf machine_name
+
+
+# Volume Shadow Copy
+
+> VSCMount.exe --dl E: --mp C:\VssRoot --ud
