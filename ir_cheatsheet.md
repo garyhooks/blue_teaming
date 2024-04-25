@@ -52,4 +52,8 @@ change machine_name to label the results properly
 
 # Volume Shadow Copy
 
+--dl: Source Drive (Where have you mounted the image)
+--mp: Base directory of where you want to mount the VSS to
+--ud: Use VSC creation timestamps 
+
 > VSCMount.exe --dl E: --mp C:\VssRoot --ud
