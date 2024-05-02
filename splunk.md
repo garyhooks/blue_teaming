@@ -62,7 +62,7 @@ IP Abuse Scores
 index=iis 
 | dedup c_ip
 | head 20
-| search abuseipdb mode=check ip=c_ip age=365
+| search abuseipdb mode=blacklist ip=c_ip age=365
 | sort - abuseipdb_abuseScore
 | table c_ip abuseipdb_abuseScore
 abuseipdb_company
