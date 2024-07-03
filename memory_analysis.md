@@ -7,8 +7,8 @@ python.exe vol.py -f "D:\mem.dmp" windows.info.Info > C:\vol_windows.Info.txt
 python.exe vol.py -f "D:\mem.dmp" -r pretty windows.getsids > C:\vol_getsids.txt
 python.exe vol.py -f "D:\mem.dmp" -r pretty windows.netscan.NetScan > C:\vol_netscan.txt
 python.exe vol.py -f "D:\mem.dmp" -r pretty windows.netstat.NetStat > C:\vol_netstat.txt
-python.exe vol.py -f "D:\mem.dmp" -r pretty windows.mutatntscan.MutantScan > C:\vol_mutantscan.txt
-python.exe vol.py -f "D:\mem.dmp" -r pretty windows.malfind.MalFind > C:\vol_malfind.txt
+python.exe vol.py -f "D:\mem.dmp" -r pretty windows.mutatntscan.Mutantscan > C:\vol_mutantscan.txt
+python.exe vol.py -f "D:\mem.dmp" -r pretty windows.malfind.Malfind > C:\vol_malfind.txt
 python.exe vol.py -f "D:\mem.dmp" windows.cmdline > C:\vol_windows.cmdline.txt
 python.exe vol.py -f "D:\mem.dmp" -r pretty windows.pstree.PsTree > C:\vol_PsTree.txt
 python.exe vol.py -f "D:\mem.dmp" windows.info.Info
