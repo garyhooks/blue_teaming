@@ -3,15 +3,14 @@ Good cheatsheet: https://blog.onfvp.com/post/volatility-cheatsheet/
 # Volatility 3
 
 ```
-python.exe vol.py -f "D:\mem.dmp" windows.info.Info > C:\vol_windows.Info.txt
-python.exe vol.py -f "D:\mem.dmp" -r pretty windows.getsids > C:\vol_getsids.txt
-python.exe vol.py -f "D:\mem.dmp" -r pretty windows.netscan.NetScan > C:\vol_netscan.txt
-python.exe vol.py -f "D:\mem.dmp" -r pretty windows.netstat.NetStat > C:\vol_netstat.txt
-python.exe vol.py -f "D:\mem.dmp" -r pretty windows.mutantscan.MutantScan > C:\vol_mutantscan.txt
-python.exe vol.py -f "D:\mem.dmp" -r pretty windows.malfind.Malfind > C:\vol_malfind.txt
-python.exe vol.py -f "D:\mem.dmp" windows.cmdline > C:\vol_windows.cmdline.txt
-python.exe vol.py -f "D:\mem.dmp" -r pretty windows.pstree.PsTree > C:\vol_PsTree.txt
-python.exe vol.py -f "D:\mem.dmp" windows.info.Info
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" windows.info.Info > "D:\sftp\physical_memory\windows.Info.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.getsids > "D:\sftp\physical_memory\getsids.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.netscan.NetScan > "D:\sftp\physical_memory\netscan.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.netstat.NetStat > "D:\sftp\physical_memory\netstat.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.mutantscan.MutantScan > "D:\sftp\physical_memory\mutantscan.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.malfind.Malfind > "D:\sftp\physical_memory\malfind.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" windows.cmdline > "D:\sftp\physical_memory\windows.cmdline.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.pstree.PsTree > "D:\sftp\physical_memory\PsTree.txt"
 ```
 
 # Volatility 2
