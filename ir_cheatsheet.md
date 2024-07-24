@@ -7,6 +7,8 @@ Record basic information:
 5) Timezone
 6) List of users and GUIDs
 
+Clear screenshots folder
+
 ## Step 1
 Mount image in Arsenal Mounter
 
