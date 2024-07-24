@@ -20,12 +20,23 @@ Upload Kape to analysis machine
  
 ## Step 3
 Get all event logs into a single CSV
-> C:\Tools\Get-ZimmermanTools\EvtxECmd -d D:\kape_output\Windows\System32\winevt\logs --csv D:\ --csvf eventlogs.csv
+C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d D:\kape_output\Windows\System32\winevt\logs --csv D:\ --csvf eventlogs.csv
+
+## Step 4
+Extract event logs restricted by date:
+
+> C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d "D:\\sftp\\spider\\Logs\\" --csv "D:\\sftp\\event_logs_date_restricted\\" --csvf "NAME_OF_CSV.csv" --sd 2024-06-20T00:00:00 --ed 2024-07-08T23:59:59
 
 Event Ripper
 
 ## Step 4
 Hayabusa 
+
+> C:\Tools\hayabusa-2.16.0-all-platforms\hayabusa-2.16.0-win-x64.exe csv-timeline --directory "D:\\sftp\\spider\\Logs\\" --output "D:\\sftp\\event_logs\\hayabusa\\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard
+
+Can also create logon summary:
+
+> C:\Tools\hayabusa-2.16.0-all-platforms\hayabusa-2.16.0-win-x64.exe logon-summary --directory "D:\\sftp\\spider\\Logs\\" --output "D:\\sftp\\event_logs\\hayabusa\\logon_summary.csv" --UTC
 
 ## Step 5
 Process in X-Ways
@@ -36,21 +47,29 @@ Process in Axiom
 ## Step 7
 Index in Splunk
 
+## Prefetch file processing:
 
+> C:\Tools\Get-ZimmermanTools\PECmd.exe -d "D:\sftp\spider\Prefetch" --csv "D:\sftp\outputs\prefetch.csv"
 
 ## Shimcache
 
 > HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache\AppCompatCache
 
-> AppCompatCacheParser.exe -f D:\registry\SYSTEM -t --csv D:\results\AppCompatCache\ --csvf machine_name.csv 
+> AppCompatCacheParser.exe -f D:\registry\SYSTEM -t --csv D:\results\AppCompatCache\ --csvf machine_name.csv
+
+C:\Tools\Get-ZimmermanTools\AppCompatCacheParser -f "C\Windows\System32\config\SYSTEM" --csv "D:\sftp\outputs" --csvf "shimcache.csv"
+
+## Recycle Bin processing
+
+> C:\Tools\Get-ZimmermanTools\RBCmd.exe -d "C\$Recycle.Bin" --csv D:\sftp\outputs\ --csvf recycle_bin.txt
+
 
 ## AmCache 
 
 Get Amcache Hive from \Windows\appcompat\Programs\Amcache.hve
 change machine_name to label the results properly
 
-> AmcacheParser.exe -f "D:\Amcache.hve" -i --csv D:\AmCacheResults --csvf machine_name
-
+> C:\Tools\Get-ZimmermanTools\AmcacheParser.exe -f "C\Windows\appcompat\Programs\Amcache.hve" --csv "D:\sftp\amcache_outputs" --csvf "amcache.csv"
 
 # Volume Shadow Copy
 
@@ -59,3 +78,16 @@ change machine_name to label the results properly
 --ud: Use VSC creation timestamps 
 
 > VSCMount.exe --dl E: --mp C:\VssRoot --ud
+
+# Memory:
+
+```
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" windows.info.Info > "D:\sftp\physical_memory\windows.Info.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.getsids > "D:\sftp\physical_memory\getsids.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.netscan.NetScan > "D:\sftp\physical_memory\netscan.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.netstat.NetStat > "D:\sftp\physical_memory\netstat.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.mutantscan.MutantScan > "D:\sftp\physical_memory\mutantscan.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.malfind.Malfind > "D:\sftp\physical_memory\malfind.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" windows.cmdline > "D:\sftp\physical_memory\windows.cmdline.txt"
+C:\python37\python.exe C:\Tools\volatility3-develop\vol.py -f "D:\sftp\physical_memory\physical_memory" -r pretty windows.pstree.PsTree > "D:\sftp\physical_memory\PsTree.txt"
+```
