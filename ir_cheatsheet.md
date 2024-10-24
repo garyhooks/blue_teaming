@@ -7,7 +7,10 @@ Record basic information:
 5) Timezone
 6) List of users and GUIDs
 
+## Preparatory Steps
 Clear screenshots folder
+Create new project task and sync OneNote
+Set objectives and define the plan including what tools to run, what artefacts to focus on and what we're trying to establish
 
 ## Step 1
 Mount image in Arsenal Mounter
@@ -62,7 +65,6 @@ C:\Tools\Get-ZimmermanTools\AppCompatCacheParser -f "C\Windows\System32\config\S
 ## Recycle Bin processing
 
 > C:\Tools\Get-ZimmermanTools\RBCmd.exe -d "C\$Recycle.Bin" --csv D:\sftp\outputs\ --csvf recycle_bin.txt
-
 
 ## AmCache 
 
