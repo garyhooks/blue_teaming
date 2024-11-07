@@ -32,6 +32,7 @@ Record basic information:
 4) Shutdown Date
 5) Timezone
 6) List of users and GUIDs
+-- SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
 
 ## Preparatory Steps
 Clear screenshots folder
