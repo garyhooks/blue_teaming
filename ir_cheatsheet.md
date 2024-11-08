@@ -19,11 +19,16 @@
  C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\winevt\logs\ --csv <EVIDENCE_DIRECTORY> --csvf "eventlogs--date_restricted.csv" --sd 2024-10-01T00:00:00 --ed 2024-10-20T23:59:59
  C:\Tools\hayabusa-2.18.0\hayabusa-2.18.0-win-x64.exe csv-timeline --directory <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\winevt\logs\ --output "<EVIDENCE_DIRECTORY>\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard
  C:\Tools\hayabusa-2.18.0\hayabusa-2.18.0-win-x64.exe logon-summary --directory <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\winevt\logs\ --output "<EVIDENCE_DIRECTORY>\hayabusa-logon-summary.csv" --UTC
+
+C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt <EVIDENCE_DIRECTORY>Security.evtx -s C:\Users\spider\Downloads\chainsaw\sigma\ --mapping C:\Users\spider\Downloads\chainsaw\mappings\sigma-event-logs-all.yml -r C:\Users\spider\Downloads\chainsaw\rules\ --csv --output <EVIDENCE_DIRECTORY>\chainsaw_results
+
+
  C:\Tools\Get-ZimmermanTools\AppCompatCacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\config\SYSTEM -t --csv <EVIDENCE_DIRECTORY>\ --AppCompatCache.csv
  C:\Tools\Get-ZimmermanTools\AmcacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\F\Windows\appcompat\Programs\Amcache.hve --csv <EVIDENCE_DIRECTORY>\ --csvf amcache_outputs.csv
  C:\Tools\Get-ZimmermanTools\PECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\F\Windows\Prefetch --csv <EVIDENCE_DIRECTORY>\prefetch.csv
+ C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f <EVIDENCE_DIRECTORY>F\Windows\System32\SRU\SRUDB.dat -r <EVIDENCE_DIRECTORY>F\Windows\System32\config\SOFTWARE --csv <EVIDENCE_DIRECTORY>\srudb\
+
  
- C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt <EVIDENCE_DIRECTORY>Security.evtx -s C:\Users\spider\Downloads\chainsaw\sigma\ --mapping C:\Users\spider\Downloads\chainsaw\mappings\sigma-event-logs-all.yml -r C:\Users\spider\Downloads\chainsaw\rules\ --csv --output <EVIDENCE_DIRECTORY>\chainsaw_results
 ```
 
 Record basic information:
