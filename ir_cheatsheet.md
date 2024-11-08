@@ -7,9 +7,10 @@
  C:\Tools\Arsenal-Image-Mounter-v3.9.223\aim_cli /mount /fakesig /filename=D:\sftp\uploads\image.E01 /provider=libewf /writeoverlay=D:\sftp\uploads\image.E01.diff /autodelete
 ```
 
-2) Update the commands below using find+replace  
-<WINDOWSLOGS> = F:\Windows\System32\winevt\Logs   
-<EVIDENCE_DIRECTORY> = D:\sftp\TEST\   
+2) Update the commands below using find+replace   
+     
+* <EVIDENCE_DIRECTORY> = D:\sftp\TEST\
+* < WINDOWSLOGS> = F:\Windows\System32\winevt\Logs    
 
 ##### Script Below
 ```
