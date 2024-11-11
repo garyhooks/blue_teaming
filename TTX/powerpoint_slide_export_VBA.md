@@ -5,7 +5,7 @@ Copy code below and press F5
 Select folder containing the CSV files  
 
 ```VBA
-Sub ExportSlidesToWordWithBorders()
+Sub ExportSlidesToWordWithBordersUsingTemplate()
     Dim pptSlide As Slide
     Dim wordApp As Object
     Dim wordDoc As Object
@@ -13,15 +13,15 @@ Sub ExportSlidesToWordWithBorders()
     Dim slideRange As Object
     Dim slideShape As Object
 
-    ' Start Word and create a new document
+    ' Start Word and open the template
     Set wordApp = CreateObject("Word.Application")
     wordApp.Visible = True
-    Set wordDoc = wordApp.Documents.Add
+    Set wordDoc = wordApp.Documents.Open("C:\Users\garyh\Documents\@CLIENTS\@DOCS\ttx_template.docx")
 
     ' Loop through each slide in the PowerPoint presentation
     For Each pptSlide In ActivePresentation.Slides
         ' Export each slide as an image file
-        slideImage = Environ("Temp") & "\Slide" & pptSlide.slideIndex & ".jpg"
+        slideImage = Environ("Temp") & "\Slide" & pptSlide.SlideIndex & ".jpg"
         pptSlide.Export slideImage, "JPG"
 
         ' Set a range to the end of the document
@@ -35,7 +35,7 @@ Sub ExportSlidesToWordWithBorders()
         With slideShape.Line
             .Visible = True
             .ForeColor.RGB = RGB(0, 0, 0) ' Black colour
-            .Weight = 1#  ' 1.0pt border
+            .Weight = 1.5 ' 1.5pt border
         End With
 
         ' Add a page break after each slide to start the next slide on a new page
@@ -46,11 +46,12 @@ Sub ExportSlidesToWordWithBorders()
         Kill slideImage
     Next pptSlide
 
-    ' Save and close the Word document
-    wordDoc.SaveAs2 Environ("UserProfile") & "\Desktop\SlidesDocumentWithBorders.docx"
+    ' Save the document with a new name to avoid overwriting the template
+    wordDoc.SaveAs2 "C:\Users\garyh\Documents\@CLIENTS\new_ttx_report.docx"
     wordApp.Quit
 
-    MsgBox "Slides exported to Word with borders successfully, each slide on a new page."
+    MsgBox "Slides exported to Word template with borders successfully, each slide on a new page."
 End Sub
+
 ```
 
