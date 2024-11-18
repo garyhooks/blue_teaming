@@ -14,7 +14,8 @@
 
 ##### Script Below
 ```
- D:\sftp\kape\kape.exe --tsource F: --tdest <EVIDENCE_DIRECTORY>\kape_output --tflush --target !SANS_Triage --vss
+Remember to chnage 
+D:\sftp\kape\kape.exe --tsource F: --tdest <EVIDENCE_DIRECTORY>\kape_output --tflush --target !SANS_Triage --vss
  C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d <WINDOWSLOGS> --csv <EVIDENCE_DIRECTORY> --csvf eventlogs.csv
  C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\winevt\logs\ --csv <EVIDENCE_DIRECTORY> --csvf "eventlogs--date_restricted.csv" --sd 2024-10-01T00:00:00 --ed 2024-10-20T23:59:59
  C:\Tools\hayabusa-2.18.0\hayabusa-2.18.0-win-x64.exe csv-timeline --directory <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\winevt\logs\ --output "<EVIDENCE_DIRECTORY>\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard
