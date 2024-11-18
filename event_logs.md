@@ -48,7 +48,7 @@ You can also skip the wizard and do a full core++ scan:
 
 Full command with CSV output:
 ```
-C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt D:\sftp\spider\kape_output\F\Windows\System32\winevt\logs\Security.evtx -s C:\Users\spider\Downloads\chainsaw\sigma\ --mapping C:\Users\spider\Downloads\chainsaw\mappings\sigma-event-logs-all.yml -r C:\Users\spider\Downloads\chainsaw\rules\ --csv --output D:\sftp\spider\chainsaw_outputs\results
+C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt D:\sftp\spider\kape_output\F\Windows\System32\winevt\logs\Security.evtx -s C:\Users\spider\Downloads\chainsaw\sigma\ --mapping C:\Users\spider\Downloads\chainsaw\mappings\sigma-event-logs-all.yml -r C:\Users\spider\Downloads\chainsaw\rules\ --csv --output D:\sftp\spider\chainsaw_outputs\results --skip-errors
 ```
 
 > .\chainsaw_x86_64-pc-windows-msvc.exe hunt .\Security.evtx -s sigma/ --mapping .\mappings\sigma-event-logs-all.yml -r rules/
