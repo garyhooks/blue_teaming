@@ -20,7 +20,7 @@
  C:\Tools\hayabusa-2.18.0\hayabusa-2.18.0-win-x64.exe csv-timeline --directory <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\winevt\logs\ --output "<EVIDENCE_DIRECTORY>\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard
  C:\Tools\hayabusa-2.18.0\hayabusa-2.18.0-win-x64.exe logon-summary --directory <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\winevt\logs\ --output "<EVIDENCE_DIRECTORY>\hayabusa-logon-summary.csv" --UTC
 
-C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt <EVIDENCE_DIRECTORY>Security.evtx -s C:\Users\spider\Downloads\chainsaw\sigma\ --mapping C:\Users\spider\Downloads\chainsaw\mappings\sigma-event-logs-all.yml -r C:\Users\spider\Downloads\chainsaw\rules\ --csv --output <EVIDENCE_DIRECTORY>\chainsaw_results
+C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt <EVIDENCE_DIRECTORY>Security.evtx -s C:\Users\spider\Downloads\chainsaw\sigma\ --mapping C:\Users\spider\Downloads\chainsaw\mappings\sigma-event-logs-all.yml -r C:\Users\spider\Downloads\chainsaw\rules\ --csv --output <EVIDENCE_DIRECTORY>\chainsaw_results --skip-errors
 
 
  C:\Tools\Get-ZimmermanTools\AppCompatCacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\config\SYSTEM -t --csv <EVIDENCE_DIRECTORY>\ --AppCompatCache.csv
