@@ -66,6 +66,18 @@ Extract event logs restricted by date:
 
 Event Ripper
 
+> wget https://github.com/keydet89/Events-Ripper/archive/refs/heads/main.zip
+
+> wevtx.bat D:\sftp\spider\EVIDENCE\E\Windows\System32\winevt\logs\*.evtx C:\events.txt
+
+List plugins
+
+> erip -l
+
+Use plugin - like logins, failedlogins, systemnames etc...
+> erip -f c:\events.txt -p <plugin> 
+
+
 ## Step 4
 Hayabusa 
 
