@@ -14,7 +14,6 @@
 
 ##### Script Below
 ```
-Remember to chnage 
 D:\sftp\kape\kape.exe --tsource F: --tdest <EVIDENCE_DIRECTORY>\kape_output --tflush --target !SANS_Triage --vss
  C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d <WINDOWSLOGS> --csv <EVIDENCE_DIRECTORY> --csvf eventlogs.csv
  C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\F\Windows\System32\winevt\logs\ --csv <EVIDENCE_DIRECTORY> --csvf "eventlogs--date_restricted.csv" --sd 2024-10-01T00:00:00 --ed 2024-10-20T23:59:59
@@ -28,8 +27,6 @@ C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt <EVI
  C:\Tools\Get-ZimmermanTools\AmcacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\F\Windows\appcompat\Programs\Amcache.hve --csv <EVIDENCE_DIRECTORY>\ --csvf amcache_outputs.csv
  C:\Tools\Get-ZimmermanTools\PECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\F\Windows\Prefetch --csv <EVIDENCE_DIRECTORY>\prefetch.csv
  C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f <EVIDENCE_DIRECTORY>F\Windows\System32\SRU\SRUDB.dat -r <EVIDENCE_DIRECTORY>F\Windows\System32\config\SOFTWARE --csv <EVIDENCE_DIRECTORY>\srudb\
-
- 
 ```
 
 Record basic information:
