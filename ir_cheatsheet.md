@@ -40,12 +40,11 @@ Record basic information:
 -- SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
 
 ## Preparatory Steps
-Clear screenshots folder
-Create new project task and sync OneNote
-Set objectives and define the plan including what tools to run, what artefacts to focus on and what we're trying to establish
-
-
-
+Clear screenshots folder   
+Create new project task and sync OneNote   
+Set objectives and define the plan including what tools to run, what artefacts to focus on and what we're trying to establish    
+Set up Local drive for Client and Project ready for any local copies   
+Create timeline for key findings    
 
 ## Step 1
 Mount image in Arsenal Mounter
