@@ -27,6 +27,7 @@ C:\Tools\Get-ZimmermanTools\AppCompatCacheParser.exe -f <EVIDENCE_DIRECTORY>\kap
 C:\Tools\Get-ZimmermanTools\AmcacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\appcompat\Programs\Amcache.hve --csv <EVIDENCE_DIRECTORY>\ --csvf amcache_outputs.csv
 C:\Tools\Get-ZimmermanTools\PECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\F\Windows\Prefetch --csv <EVIDENCE_DIRECTORY>\prefetch.csv
 C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f <EVIDENCE_DIRECTORY>\<DRIVE_LETTER>\Windows\System32\SRU\SRUDB.dat -r <EVIDENCE_DIRECTORY>F\Windows\System32\config\SOFTWARE --csv <EVIDENCE_DIRECTORY>\srudb\
+C:\Tools\Get-ZimmermanTools\LECmd.exe -d <DRIVE_LETTER>:\Users\ --csv <EVIDENCE_DIRECTORY>\RecentLNKfiles.csv
 ```
 
 Record basic information:
