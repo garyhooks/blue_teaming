@@ -1,12 +1,12 @@
 # Overview
 
-.pf file is created the first time an application is run
-The cache manager monitors all files and directories, and records them into each respective .pf file
+* .pf file is created the first time an application is run
+* The cache manager monitors all files and directories, and records them into each respective .pf file
 
-The filenames are listed as **FILENAME**-**HEX REPRESENTATION OF HASH OF FILE PATH**.pf
-Note: for Windows applications, such as svchost - the hex includes the fullpath AND command line arguments
+* The filenames are listed as **FILENAME**-**HEX REPRESENTATION OF HASH OF FILE PATH**.pf
+* Note: for Windows applications, such as svchost - the hex includes the fullpath AND command line arguments
 
-If an application fails to start or run properly, the prefetch file may still be created 
+* If an application fails to start or run properly, the prefetch file may still be created 
 
 ## Timestamps
 Windows 8+ will create up to 9 execution times:
