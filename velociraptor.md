@@ -118,6 +118,8 @@ The server is now ready to be created as we've completed the configuration steps
 
 # Creating a Velociraptor client package 
 
+**NOTE**: This creates an exe file - which velociraptor do not recommend. They recommend an MSI file which I am still testing. The exe file works, but just something to be aware of. https://docs.velociraptor.app/docs/deployment/clients/ 
+
 1. Go to the GitHub release page (https://github.com/Velocidex/velociraptor/releases) in order to view the latest versions.
       * Expand the selection and find the windows exeuctable version (assuming this is for a windows environment - which is what has been tested so far).
       * The file should be something like: velociraptor-v0.73.3-windows-amd64.exe.
