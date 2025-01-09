@@ -28,7 +28,7 @@ This instance will act as the platform and server for the Velociraptor instance.
     * Operating System: Select Ubuntu - do not use Amazon Linux
     * Instance Type:  For smaller deployments, t2.micro may be suitable, although is subject to consideration
     * Key Pair: Select DFIR-SFTP (note: you will need this key file to connect to the server later on)
-    * Network Settings: Click Edit in the top right of this part of the form. Change Type from SSH to "All Traffic". Change Soure type to "My IP" (*DO NOT* leave this as Anywhere, as this will mean any one on the internet can access the portal)
+    * Network Settings: Click Edit in the top right of this part of the form. Change Type from SSH to "All Traffic". Change Soure type to "My IP" (**DO NOT** leave this as Anywhere, as this will mean any one on the internet can access the portal)
     * Storage: Choose storage volumer required. During testing, the basic installation is about 8gb. A good starting point may be 50-100gb.
         
 8. Click "Launch Instance" on the right side
@@ -47,7 +47,7 @@ This instance will act as the platform and server for the Velociraptor instance.
      * Select the DFIR-SFTP.ppk file
      * Click Open
   
-3. Go to the GitHub release page (https://github.com/Velocidex/velociraptor/releases) in order to view the latest versions. You can expand to see all latest releases. Right click on the one titled: *velociraptor-vXXXXX-linux-amd64" and select "Copy Link Address"
+3. Go to the GitHub release page (https://github.com/Velocidex/velociraptor/releases) in order to view the latest versions. You can expand to see all latest releases. Right click on the one titled: "velociraptor-vXXXXX-linux-amd64" and select "Copy Link Address"
 
 4. In the Linux terminal window, enter: wget followed by the URL you have just copied.
    
@@ -113,5 +113,5 @@ The server is now ready to be created as we've completed the configuration steps
       * Ignore any warnings relating to insecure connections and continue.
    
 5. When prompted, enter the username and password you entered in the installation steps.
-   
-7. d
+  
+6. You should now have access to the admin panel. Click the magnifying glass to view connected clients, which at this point will be entirely empty. However, later, this will populate with clients who have installed the velociraptor agent.
