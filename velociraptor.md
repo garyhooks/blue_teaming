@@ -115,3 +115,27 @@ The server is now ready to be created as we've completed the configuration steps
 5. When prompted, enter the username and password you entered in the installation steps.
   
 6. You should now have access to the admin panel. Click the magnifying glass to view connected clients, which at this point will be entirely empty. However, later, this will populate with clients who have installed the velociraptor agent.
+
+# Creating a Velociraptor client package 
+
+1. Go to the GitHub release page (https://github.com/Velocidex/velociraptor/releases) in order to view the latest versions. Expand the selection and find the windows exeuctable version (assuming this is for a windows environment - which is what has been tested so far). The file should be something like: velociraptor-v0.73.3-windows-amd64.exe. Right click and select "Copy link address".
+
+2. In linux, download the file by entering: wget https://github.com/Velocidex/velociraptor/releases/download/v0.73/velociraptor-v0.73.3-windows-amd64.exe
+
+3. Enter the following command:
+
+   ```
+   sudo /home/ubuntu/velociraptor-v0.73.3-linux-amd64 config repack --exe /home/ubuntu/velociraptor-v0.73.3-windows-amd64.exe /opt/velociraptor/client.config.yaml NAME_OF_BINARY.EXE
+   ```
+4. This will output an executable (.exe) file. This file needs to be transferred to any client which you wish to integrate into the Velociraptor server.
+
+5. On the target server, make sure the application is executed. In a standalone test environment this can be done by enetering command: D:\<FILENAME>.exe service install
+
+**IMPORTANT NOTE**: Clients will be connecting to the server through port 8000 (as configured in the server.config.yaml) file. If clients aren't listed in Velociraptor, it's likely to do with AWS firewall rules, where clients need to be whitelisted. It may be best to allow a range of IPs on port 8000, such as a specific IP cidr block used by the client.
+
+7. This will now appear in the clients listed
+
+![image](https://github.com/user-attachments/assets/67eecd81-0004-49ff-8ee0-06c1f0934e5d)
+
+
+
