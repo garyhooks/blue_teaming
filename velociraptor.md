@@ -28,7 +28,7 @@ This instance will act as the platform and server for the Velociraptor instance.
     * Operating System: Select Ubuntu - do not use Amazon Linux
     * Instance Type:  For smaller deployments, t2.micro may be suitable, although is subject to consideration
     * Key Pair: Select DFIR-SFTP (note: you will need this key file to connect to the server later on)
-    * Network Settings: Create security group, and allow SSH from "My IP" only.
+    * Network Settings: Click Edit in the top right of this part of the form. Change Type from SSH to "All Traffic". Change Soure type to "My IP" (*DO NOT* leave this as Anywhere, as this will mean any one on the internet can access the portal)
     * Storage: Choose storage volumer required. During testing, the basic installation is about 8gb. A good starting point may be 50-100gb.
         
 8. Click "Launch Instance" on the right side
@@ -106,4 +106,12 @@ The server is now ready to be created as we've completed the configuration steps
    
 ![image](https://github.com/user-attachments/assets/ef9d5014-20be-4337-b797-6e6231215986)
 
-5. 
+4. To test this has all worked, open a web browser on your local machine, and enter:
+
+      * https:// followed by the public DNS from before, followed by :8889
+      * https://ec2-1-15-21-218.eu-west-2.compute.amazonaws.com:8889
+      * Ignore any warnings relating to insecure connections and continue.
+   
+5. When prompted, enter the username and password you entered in the installation steps.
+   
+7. d
