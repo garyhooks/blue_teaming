@@ -116,7 +116,31 @@ The server is now ready to be created as we've completed the configuration steps
   
 6. You should now have access to the admin panel. Click the magnifying glass to view connected clients, which at this point will be entirely empty. However, later, this will populate with clients who have installed the velociraptor agent.
 
-# Creating a Velociraptor client package 
+# Creating a Velociraptor client package (.msi version)
+
+1. Go to the GitHub release page () in order to view the latest versions
+      * Expand the selection and find the latest version of the windows msi file, likely for an amd64 system, for example: velociraptor-v0.73.3-windows-amd64.msi
+      * Right click and select "Copy link address".
+
+2. In linux download the file by entering: wget https://github.com/Velocidex/velociraptor/releases/download/v0.73/velociraptor-v0.73.3-windows-amd64.msi
+
+3. Enter the following command:
+
+```
+sudo /home/ubuntu/velociraptor-v0.73.3-linux-amd64 config repack --msi /home/ubuntu/velociraptor-v0.73.3-windows-amd64.msi /opt/velociraptor/client.config.yaml NAME_OF_MSI_FILE.msi
+```
+
+4. This will output an executable (.exe) file. This file needs to be transferred to any client which you wish to integrate into the Velociraptor server.
+
+5. Install this on the target client by doing this:
+      * Open command prompt as administrator
+      * msiexec /i name_of_file.msi
+  
+NOTE: in an enterprise environment, obviously use group policy or other network distribution methods.
+
+6. This will now appear in the clients listed
+
+# Creating a Velociraptor client package (.exe version)
 
 **NOTE**: This creates an exe file - which velociraptor do not recommend. They recommend an MSI file which I am still testing. The exe file works, but just something to be aware of. https://docs.velociraptor.app/docs/deployment/clients/ 
 
