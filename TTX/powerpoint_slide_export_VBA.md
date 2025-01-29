@@ -47,8 +47,8 @@ Sub ExportSlidesToWordWithBordersUsingTemplate()
     Next pptSlide
 
     ' Save the document with a new name to avoid overwriting the template
-    wordDoc.SaveAs2 "C:\Users\garyh\Documents\@CLIENTS\new_ttx_report.docx"
-    wordApp.Quit
+    'wordDoc.SaveAs2 "C:\Users\garyh\Documents\@CLIENTS\new_ttx_report.docx"
+    'wordApp.Quit
 
     MsgBox "Slides exported to Word template with borders successfully, each slide on a new page."
 End Sub
