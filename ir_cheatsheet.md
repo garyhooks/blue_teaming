@@ -44,7 +44,10 @@ Clear screenshots folder
 Create new project task and sync OneNote   
 Set objectives and define the plan including what tools to run, what artefacts to focus on and what we're trying to establish    
 Set up Local drive for Client and Project ready for any local copies   
-Create timeline for key findings    
+Create timeline for key findings with IOCs tab including source/host it relates to  
+Add macros to Word and Excel for date formats/table formatting    
+Plan client update, including status of investigation with hosts examined and key findings   
+Update OneNote   
 
 ## Step 1
 Mount image in Arsenal Mounter
