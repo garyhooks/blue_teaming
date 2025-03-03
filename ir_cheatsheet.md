@@ -9,9 +9,9 @@
 
 2) Update the commands below using find+replace   
      
-* <EVIDENCE_DIRECTORY> = D:\sftp\TEST\
-* < WINDOWSLOGS> = F:\Windows\System32\winevt\Logs    
-* <DRIVE_LETTER> = Replace this with the drive letter of where it is mounted in arsenal
+* Evidence Directory <EVIDENCE_DIRECTORY> = D:\sftp\TEST\
+* Windows Log Directory <WINDOWSLOGS> = F:\Windows\System32\winevt\Logs    
+* Drive Letter <DRIVE_LETTER> = Replace this with the drive letter of where it is mounted in arsenal
   
 ##### Script Below
 ```
@@ -25,9 +25,10 @@ C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt <EVI
 
 C:\Tools\Get-ZimmermanTools\AppCompatCacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\System32\config\SYSTEM -t --csv <EVIDENCE_DIRECTORY>\ --AppCompatCache.csv
 C:\Tools\Get-ZimmermanTools\AmcacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\appcompat\Programs\Amcache.hve --csv <EVIDENCE_DIRECTORY>\ --csvf amcache_outputs.csv
-C:\Tools\Get-ZimmermanTools\PECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\F\Windows\Prefetch --csv <EVIDENCE_DIRECTORY>\prefetch.csv
+C:\Tools\Get-ZimmermanTools\PECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\Prefetch --csv <EVIDENCE_DIRECTORY>\prefetch.csv
 C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f <EVIDENCE_DIRECTORY>\<DRIVE_LETTER>\Windows\System32\SRU\SRUDB.dat -r <EVIDENCE_DIRECTORY>F\Windows\System32\config\SOFTWARE --csv <EVIDENCE_DIRECTORY>\srudb\
 C:\Tools\Get-ZimmermanTools\LECmd.exe -d <DRIVE_LETTER>:\Users\ --csv <EVIDENCE_DIRECTORY>\RecentLNKfiles.csv
+C:\Tools\Get-ZimmermanTools\MFTExplorer\MFTExplorer.exe --f <EVIDENCE_DIRECTORY>\C\$MFT --csv <EVIDENCE_DIRECTORY>\
 ```
 
 Record basic information:
