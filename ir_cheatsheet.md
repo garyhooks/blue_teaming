@@ -83,7 +83,6 @@ echo [*] Running AmcacheParser.exe on Amcache Hive inside %EVIDENCE_DIRECTORY%\%
 echo [*] Running AmcacheParser.exe on Amcache Hive inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\appcompat\Programs\Amcache.hve. Outputs saved to %OUTPUTS%\amcache_outputs.csv >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\AmcacheParser.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\appcompat\Programs\Amcache.hve --csv %OUTPUTS%\ --csvf amcache_outputs.csv >> %LOG_DIRECTORY%\AmcacheParser.log 2>&1
 
-
 echo [*] Obtaining Prefetch files using PECmd.exe on %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch. Outputs saved to %OUTPUTS%\prefetch\
 echo [*] Obtaining Prefetch files using PECmd.exe on %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch. Outputs saved to %OUTPUTS%\prefetch\ >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\PECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch --csv %OUTPUTS%\prefetch >> %LOG_DIRECTORY%\PECmd.log 2>&1
@@ -92,22 +91,17 @@ echo [*] Obtaining Scrum (System Resource Utilization Monitor) on SRUDB.dat insi
 echo [*] Obtaining Scrum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\ >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat -r %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE --csv %OUTPUTS%\srudb\ >> %LOG_DIRECTORY%\ScrumECmd.log 2>&1
 
-
 echo [*] Obtaining LNK files from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Users\. Outputs saved to %OUTPUTS%\RecentLNKfiles.csv
 echo [*] Obtaining LNK files from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Users\. Outputs saved to %OUTPUTS%\RecentLNKfiles.csv >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\LECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Users\ --csv %OUTPUTS% --csvf RecentLNKfiles.csv >> %LOG_DIRECTORY%\LECmd.log 2>&1
 
-
-
- echo [*] Creating CSV of the MFT in %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT. Output saved to %OUTPUTS%\mft.csv
- echo [*] Creating CSV of the MFT in %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT. Output saved to %OUTPUTS%\mft.csv >> %MAIN_LOGFILE%
- C:\Tools\Get-ZimmermanTools\MFTECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT --csv %OUTPUTS%\ --csvf mft.csv >> %LOG_DIRECTORY%\MFTEcmd.log 2>&1
-
+echo [*] Creating CSV of the MFT in %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT. Output saved to %OUTPUTS%\mft.csv
+echo [*] Creating CSV of the MFT in %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT. Output saved to %OUTPUTS%\mft.csv >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\MFTECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT --csv %OUTPUTS%\ --csvf mft.csv >> %LOG_DIRECTORY%\MFTEcmd.log 2>&1
 
 echo [*] Obtaining contents of $Recycle.Bin from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\. Output saved to %OUTPUTS%\recycle_bin.csv
 echo [*] Obtaining contents of $Recycle.Bin from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\. Output saved to %OUTPUTS%\recycle_bin.csv >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\RBCmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\ --csv %OUTPUTS%\ --csvf %OUTPUTS%\recycle_bin.csv >> %LOG_DIRECTORY%\RBCmd.log 2>&1
-
 
 echo.
 echo ================================================================================
@@ -132,6 +126,7 @@ Create new project task and sync OneNote
 Set objectives and define the plan including what tools to run, what artefacts to focus on and what we're trying to establish    
 Set up Local drive for Client and Project ready for any local copies   
 Create timeline for key findings with IOCs tab including source/host it relates to  
+Open Report, ensuring it is prepared and ready to go
 Add macros to Word and Excel for date formats/table formatting    
 Plan client update, including status of investigation with hosts examined and key findings   
 Update OneNote   
