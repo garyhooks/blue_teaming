@@ -14,21 +14,112 @@
 * Drive Letter <DRIVE_LETTER> = Replace this with the drive letter of where it is mounted in arsenal
   
 ##### Script Below
-```
-D:\sftp\kape\kape.exe --tsource F: --tdest <EVIDENCE_DIRECTORY>\kape_output --tflush --target !SANS_Triage --vss
-C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d <WINDOWSLOGS> --csv <EVIDENCE_DIRECTORY> --csvf eventlogs.csv
-C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\System32\winevt\logs\ --csv <EVIDENCE_DIRECTORY> --csvf "eventlogs--date_restricted.csv" --sd 2024-10-01T00:00:00 --ed 2024-10-20T23:59:59
-C:\Tools\hayabusa-2.18.0\hayabusa-2.18.0-win-x64.exe csv-timeline --directory <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\System32\winevt\logs\ --output "<EVIDENCE_DIRECTORY>\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard
-C:\Tools\hayabusa-2.18.0\hayabusa-2.18.0-win-x64.exe logon-summary --directory <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\System32\winevt\logs\ --output "<EVIDENCE_DIRECTORY>\hayabusa-logon-summary.csv" --UTC
+```bat
+@echo off
+:: ==============================
+:: Batch Script Configuration
+:: ==============================
+:: Replace the placeholders with actual values where applicable.
+:: Ensure that each variable is correctly formatted.
 
-C:\Users\spider\Downloads\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt <EVIDENCE_DIRECTORY>\ -s C:\Users\spider\Downloads\chainsaw\sigma\ --mapping C:\Users\spider\Downloads\chainsaw\mappings\sigma-event-logs-all.yml -r C:\Users\spider\Downloads\chainsaw\rules\ --csv --output <EVIDENCE_DIRECTORY>\chainsaw_results --skip-errors
+:: ------------------------------
+:: VARIABLE DECLARATIONS
+:: ------------------------------
+:: EVIDENCE_DIRECTORY - Path to the source directory (e.g., KAPE output).
+:: DRIVE_LETTER - The drive letter where evidence (e.g., event logs, registry) is stored.
+:: WINDOWS_LOGS - Location of Windows logs, typically inside the KAPE output directory.
 
-C:\Tools\Get-ZimmermanTools\AppCompatCacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\System32\config\SYSTEM -t --csv <EVIDENCE_DIRECTORY>\ --AppCompatCache.csv
-C:\Tools\Get-ZimmermanTools\AmcacheParser.exe -f <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\appcompat\Programs\Amcache.hve --csv <EVIDENCE_DIRECTORY>\ --csvf amcache_outputs.csv
-C:\Tools\Get-ZimmermanTools\PECmd.exe -d <EVIDENCE_DIRECTORY>\kape_output\<DRIVE_LETTER>\Windows\Prefetch --csv <EVIDENCE_DIRECTORY>\prefetch.csv
-C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f <EVIDENCE_DIRECTORY>\<DRIVE_LETTER>\Windows\System32\SRU\SRUDB.dat -r <EVIDENCE_DIRECTORY>F\Windows\System32\config\SOFTWARE --csv <EVIDENCE_DIRECTORY>\srudb\
-C:\Tools\Get-ZimmermanTools\LECmd.exe -d <DRIVE_LETTER>:\Users\ --csv <EVIDENCE_DIRECTORY>\RecentLNKfiles.csv
-C:\Tools\Get-ZimmermanTools\MFTExplorer\MFTExplorer.exe --f <EVIDENCE_DIRECTORY>\C\$MFT --csv <EVIDENCE_DIRECTORY>\
+set EVIDENCE_DIRECTORY=D:\capita_laptop\
+set DRIVE_LETTER=C
+::set WINDOWS_LOGS=%EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\Logs
+
+set OUTPUTS=%EVIDENCE_DIRECTORY%\OUTPUTS
+
+if not exist %OUTPUTS% mkdir %OUTPUTS%
+
+set LOG_DIRECTORY=%EVIDENCE_DIRECTORY%\OUTPUTS\LOGS\
+if not exist %LOG_DIRECTORY% mkdir %LOG_DIRECTORY%
+set MAIN_LOGFILE=%LOG_DIRECTORY%\log.txt
+
+:: ==============================
+:: END OF CONFIGURATION
+:: ==============================
+
+@echo off
+
+echo Script started at %DATE% %TIME% (mm/dd/yyyy hh:mm:ss.ss)
+echo Script started at %DATE% %TIME% (mm/dd/yyyy hh:mm:ss.ss) >> %MAIN_LOGFILE%
+echo ===========================================================
+echo LOG_DIRECTORY = %LOG_DIRECTORY%
+echo LOG_DIRECTORY = %LOG_DIRECTORY% >> %LOG_DIRECTORY%\%MAIN_LOGFILE%
+echo EVIDENCE_DIRECTORY = %EVIDENCE_DIRECTORY%
+echo EVIDENCE_DIRECTORY = %EVIDENCE_DIRECTORY% >> %MAIN_LOGFILE%
+echo DRIVE_LETTER = %DRIVE_LETTER%
+echo DRIVE_LETTER = %DRIVE_LETTER% >> %MAIN_LOGFILE%
+::echo WINDOWS_LOGS = %WINDOWS_LOGS% 
+::echo WINDOWS_LOGS = %WINDOWS_LOGS%  >> %MAIN_LOGFILE%
+echo OUTPUTS = %EVIDENCE_DIRECTORY%\OUTPUTS\
+echo OUTPUTS = %OUTPUTS% >> %MAIN_LOGFILE%
+echo ===========================================================
+echo. 
+echo. >> %MAIN_LOGFILE%
+
+:: Here is a date restricted option - commented out for now 
+::C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf "eventlogs--date_restricted.csv" --sd 2024-10-01T00:00:00 --ed 2024-10-20T23:59:59
+
+
+echo [*] Outputting Windows Event Logs from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ...
+echo [*] Outputting Windows Event Logs from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ... >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf eventlogs.csv >> %LOG_DIRECTORY%\evtxecmd.log 2>&1
+
+echo [*] Running Hayabusa csv-timeline on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv
+echo [*] Running Hayabusa csv-timeline on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv >> %MAIN_LOGFILE%
+C:\Tools\hayabusa-2.18.0-all-platforms\hayabusa-2.18.0-win-x64.exe csv-timeline --directory %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --output "%OUTPUTS%\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard >> %LOG_DIRECTORY%\hayabusa.log 2>&1
+
+echo [*] Running Hayabusa logon-summary on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv
+echo [*] Running Hayabusa logon-summary on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv >> %MAIN_LOGFILE%
+C:\Tools\hayabusa-2.18.0-all-platforms\hayabusa-2.18.0-win-x64.exe logon-summary --directory %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --output "%OUTPUTS%\hayabusa-logon-summary.csv" --UTC >> %LOG_DIRECTORY%\hayabusa.log 2>&1
+
+echo [*] Running AppCompatCacheParser.exe on event logs inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\AppCompatCache.csv
+echo [*] Running AppCompatCacheParser.exe on event logs inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\AppCompatCache.csv >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\AppCompatCacheParser.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SYSTEM -t --csv %OUTPUTS%\ --csvf AppCompatCache.csv >> %LOG_DIRECTORY%\AppCompatCache.log 2>&1
+
+echo [*] Running AmcacheParser.exe on Amcache Hive inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\appcompat\Programs\Amcache.hve. Outputs saved to %OUTPUTS%\amcache_outputs.csv
+echo [*] Running AmcacheParser.exe on Amcache Hive inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\appcompat\Programs\Amcache.hve. Outputs saved to %OUTPUTS%\amcache_outputs.csv >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\AmcacheParser.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\appcompat\Programs\Amcache.hve --csv %OUTPUTS%\ --csvf amcache_outputs.csv >> %LOG_DIRECTORY%\AmcacheParser.log 2>&1
+
+
+echo [*] Obtaining Prefetch files using PECmd.exe on %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch. Outputs saved to %OUTPUTS%\prefetch\
+echo [*] Obtaining Prefetch files using PECmd.exe on %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch. Outputs saved to %OUTPUTS%\prefetch\ >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\PECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch --csv %OUTPUTS%\prefetch >> %LOG_DIRECTORY%\PECmd.log 2>&1
+
+echo [*] Obtaining Scrum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\
+echo [*] Obtaining Scrum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\ >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat -r %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE --csv %OUTPUTS%\srudb\ >> %LOG_DIRECTORY%\ScrumECmd.log 2>&1
+
+
+echo [*] Obtaining LNK files from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Users\. Outputs saved to %OUTPUTS%\RecentLNKfiles.csv
+echo [*] Obtaining LNK files from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Users\. Outputs saved to %OUTPUTS%\RecentLNKfiles.csv >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\LECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Users\ --csv %OUTPUTS% --csvf RecentLNKfiles.csv >> %LOG_DIRECTORY%\LECmd.log 2>&1
+
+
+
+ echo [*] Creating CSV of the MFT in %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT. Output saved to %OUTPUTS%\mft.csv
+ echo [*] Creating CSV of the MFT in %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT. Output saved to %OUTPUTS%\mft.csv >> %MAIN_LOGFILE%
+ C:\Tools\Get-ZimmermanTools\MFTECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT --csv %OUTPUTS%\ --csvf mft.csv >> %LOG_DIRECTORY%\MFTEcmd.log 2>&1
+
+
+echo [*] Obtaining contents of $Recycle.Bin from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\. Output saved to %OUTPUTS%\recycle_bin.csv
+echo [*] Obtaining contents of $Recycle.Bin from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\. Output saved to %OUTPUTS%\recycle_bin.csv >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\RBCmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\ --csv %OUTPUTS%\ --csvf %OUTPUTS%\recycle_bin.csv >> %LOG_DIRECTORY%\RBCmd.log 2>&1
+
+
+echo.
+echo ================================================================================
+echo.
+echo Process Finished at %DATE% %TIME% (mm/dd/yyyy hh:mm:ss.ss)
+echo Process Finished at %DATE% %TIME% (mm/dd/yyyy hh:mm:ss.ss) >> %MAIN_LOGFILE%
+
 ```
 
 Record basic information:
