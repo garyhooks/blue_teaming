@@ -27,19 +27,16 @@
 :: ------------------------------
 :: EVIDENCE_DIRECTORY - Path to the source directory (e.g., KAPE output).
 :: DRIVE_LETTER - The drive letter where evidence (e.g., event logs, registry) is stored.
-:: WINDOWS_LOGS - Location of Windows logs, typically inside the KAPE output directory.
+:: OUTPUTS - Location of results and CSV files.
 
 set EVIDENCE_DIRECTORY=D:\capita_laptop\
 set DRIVE_LETTER=C
-::set WINDOWS_LOGS=%EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\Logs
-
 set OUTPUTS=%EVIDENCE_DIRECTORY%\OUTPUTS
+set LOG_DIRECTORY=%EVIDENCE_DIRECTORY%\OUTPUTS\LOGS\
+set MAIN_LOGFILE=%LOG_DIRECTORY%\log.txt
 
 if not exist %OUTPUTS% mkdir %OUTPUTS%
-
-set LOG_DIRECTORY=%EVIDENCE_DIRECTORY%\OUTPUTS\LOGS\
 if not exist %LOG_DIRECTORY% mkdir %LOG_DIRECTORY%
-set MAIN_LOGFILE=%LOG_DIRECTORY%\log.txt
 
 :: ==============================
 :: END OF CONFIGURATION
@@ -56,8 +53,6 @@ echo EVIDENCE_DIRECTORY = %EVIDENCE_DIRECTORY%
 echo EVIDENCE_DIRECTORY = %EVIDENCE_DIRECTORY% >> %MAIN_LOGFILE%
 echo DRIVE_LETTER = %DRIVE_LETTER%
 echo DRIVE_LETTER = %DRIVE_LETTER% >> %MAIN_LOGFILE%
-::echo WINDOWS_LOGS = %WINDOWS_LOGS% 
-::echo WINDOWS_LOGS = %WINDOWS_LOGS%  >> %MAIN_LOGFILE%
 echo OUTPUTS = %EVIDENCE_DIRECTORY%\OUTPUTS\
 echo OUTPUTS = %OUTPUTS% >> %MAIN_LOGFILE%
 echo ===========================================================
@@ -65,7 +60,7 @@ echo.
 echo. >> %MAIN_LOGFILE%
 
 :: Here is a date restricted option - commented out for now 
-::C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf "eventlogs--date_restricted.csv" --sd 2024-10-01T00:00:00 --ed 2024-10-20T23:59:59
+:: C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf "eventlogs--date_restricted.csv" --sd 2024-10-01T00:00:00 --ed 2024-10-20T23:59:59
 
 
 echo [*] Outputting Windows Event Logs from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ...
