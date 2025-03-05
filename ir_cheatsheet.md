@@ -12,7 +12,14 @@
 * Evidence Directory <EVIDENCE_DIRECTORY> = D:\sftp\TEST\
 * Windows Log Directory <WINDOWSLOGS> = F:\Windows\System32\winevt\Logs    
 * Drive Letter <DRIVE_LETTER> = Replace this with the drive letter of where it is mounted in arsenal
-  
+
+**KAPE**
+If you want to obtain a Kape output do this:
+
+> D:\sftp\kape\kape.exe --tsource F: --tdest <EVIDENCE_DIRECTORY>\kape_output --tflush --target !SANS_Triage --vss
+
+This also obtains the Volume Shadow copy (--vss)
+
 ##### Script Below
 ```bat
 @echo off
