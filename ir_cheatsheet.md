@@ -36,7 +36,7 @@ This also obtains the Volume Shadow copy (--vss)
 :: DRIVE_LETTER - The drive letter where evidence (e.g., event logs, registry) is stored.
 :: OUTPUTS - Location of results and CSV files.
 
-set EVIDENCE_DIRECTORY=D:\capita_laptop\
+set EVIDENCE_DIRECTORY=D:\laptop123\
 set DRIVE_LETTER=C
 set OUTPUTS=%EVIDENCE_DIRECTORY%\OUTPUTS
 set LOG_DIRECTORY=%EVIDENCE_DIRECTORY%\OUTPUTS\LOGS\
