@@ -1,3 +1,22 @@
+### Create Timestamp
+
+> | eval CustomTimestamp=strftime(_time, "%Y-%m-%d %H:%M:%S")
+
+### M365 Email Parsing
+
+```
+source="purview_log.csv" 
+| spath input=AuditData path=ClientIP 
+| spath input=AuditData path=SessionId
+| mvexpand AuditData
+| eval _raw=AuditData
+| spath AffectedItems{}.ParentFolder output=ParentFolder
+| spath AffectedItems{}.ParentFolder{}.Path output=Path
+| spath AffectedItems{}.Attachments output=Attachments
+| spath AffectedItems{}.Subject output=Subject
+| eval CustomTimestamp=strftime(_time, "%Y-%m-%d %H:%M:%S")
+```
+
 > C:\Program Files\Splunk\bin\splunk.exe add index events
 
 Change default search range:
