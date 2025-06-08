@@ -1,3 +1,9 @@
+### Get earliest and latest times:
+
+> index=index_name | stats min(_time) as earliest_time | eval earliest_time=strftime(earliest_time, "%Y-%m-%d %H:%M:%S")
+
+> index=index_name | stats max(_time) as latest_time | eval latest_time=strftime(latest_time, "%Y-%m-%d %H:%M:%S")
+
 ### Create Timestamp
 
 > | eval CustomTimestamp=strftime(_time, "%Y-%m-%d %H:%M:%S")
