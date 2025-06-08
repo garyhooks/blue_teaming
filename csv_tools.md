@@ -77,3 +77,38 @@ Sub CSVtoXLS()
     Application.DisplayAlerts = True
 End Sub
 ```
+
+
+## Convert XLSX files to CSV files
+
+```
+Sub XLStoCSV()
+'Convert XLSX files to CSV
+    Dim xFd As FileDialog
+    Dim xSPath As String
+    Dim xXLSXFile As String
+    Dim xWsheet As String
+    Application.DisplayAlerts = False
+    Application.StatusBar = True
+    xWsheet = ActiveWorkbook.Name
+    Set xFd = Application.FileDialog(msoFileDialogFolderPicker)
+    xFd.Title = "Select a folder:"
+    If xFd.Show = -1 Then
+        xSPath = xFd.SelectedItems(1)
+    Else
+        Exit Sub
+    End If
+    If Right(xSPath, 1) <> "\" Then xSPath = xSPath + "\"
+    xXLSXFile = Dir(xSPath & "*.xlsx")
+    Do While xXLSXFile <> ""
+        Application.StatusBar = "Converting: " & xXLSXFile
+        Workbooks.Open Filename:=xSPath & xXLSXFile
+        ActiveWorkbook.SaveAs Replace(xSPath & xXLSXFile, ".xlsx", ".csv", vbTextCompare), xlCSV
+        ActiveWorkbook.Close
+        Windows(xWsheet).Activate
+        xXLSXFile = Dir
+    Loop
+    Application.StatusBar = False
+    Application.DisplayAlerts = True
+End Sub
+```
