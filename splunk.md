@@ -4,6 +4,26 @@
 
 > index=index_name | stats max(_time) as latest_time | eval latest_time=strftime(latest_time, "%Y-%m-%d %H:%M:%S")
 
+### Change Timestamp and Timezone when important data 
+
+Go to Sources and create a new source, such as csv_example_source
+
+SSH to Splunk and do this:
+
+> sudo nano /opt/splunk/etc/system/local/props.conf
+
+Add this or similar:
+
+```
+[csv_example_source]
+TZ = Asia/Singapore
+TIME_FORMAT = %Y-%m-%dT%H:%M:%S.%3N
+SHOULD_LINEMERGE = false
+INDEXED_EXTRACTIONS = csv
+```
+
+Then when you add the new data to Splunk choose this as the source type 
+
 ### Create Timestamp
 
 > | eval CustomTimestamp=strftime(_time, "%Y-%m-%d %H:%M:%S")
