@@ -173,11 +173,11 @@ Use plugin - like logins, failedlogins, systemnames etc...
 ## Step 4
 Hayabusa 
 
-> C:\Tools\hayabusa-2.16.0-all-platforms\hayabusa-2.16.0-win-x64.exe csv-timeline --directory "D:\\sftp\\spider\\Logs\\" --output "D:\\sftp\\event_logs\\hayabusa\\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard
+> C:\Tools\hayabusa-2.18.0-all-platforms\hayabusa-2.18.0-win-x64.exe csv-timeline --directory "D:\\sftp\\spider\\Logs\\" --output "D:\\sftp\\event_logs\\hayabusa\\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard
 
 Can also create logon summary:
 
-> C:\Tools\hayabusa-2.16.0-all-platforms\hayabusa-2.16.0-win-x64.exe logon-summary --directory "D:\\sftp\\spider\\Logs\\" --output "D:\\sftp\\event_logs\\hayabusa\\logon_summary.csv" --UTC
+> C:\Tools\hayabusa-2.18.0-all-platforms\hayabusa-2.18.0-win-x64.exe logon-summary --directory "D:\\sftp\\spider\\Logs\\" --output "D:\\sftp\\event_logs\\hayabusa\\logon_summary.csv" --UTC
 
 ## Step 5
 Process in X-Ways
