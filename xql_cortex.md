@@ -11,9 +11,13 @@
 - xdr_alerts
 
 > preset = xdr_file | filter action_file_name contains "readme.txt"
+
 > preset = xdr_login_events | filter agent_hostname contains "server"
+
 > preset = xdr_login_events | filter agent_hostname contains "server" and outcome!="SUCCESS"
+
 > preset = xdr_login_events | filter agent_hostname contains "server" and outcome!="SUCCESS" | _time, agent_hostname, actor_effective_username, auth_result, logon_type, source_ip
+
 
 You can also do this to discover fields, but also search **within a time frame**:
 
