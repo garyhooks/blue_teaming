@@ -1,5 +1,14 @@
 Useful resource: https://github.com/reprise99/Sentinel-Queries
 
+### Find time frames available
+
+```kql
+DeviceFileEvents
+| summarize
+MinTimestamp = min(Timestamp),
+MaxTimestamp = max(Timestamp)
+```
+
 ### Sign In Logs
 
 ```kql
