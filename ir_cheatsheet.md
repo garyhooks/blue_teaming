@@ -74,6 +74,10 @@ echo [*] Outputting Windows Event Logs from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\
 echo [*] Outputting Windows Event Logs from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ... >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf eventlogs.csv >> %LOG_DIRECTORY%\evtxecmd.log 2>&1
 
+echo [*] Outputting Windows Event Logs DATE RESTRICTED %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ...
+echo [*] Outputting Windows Event Logs DATE RESTRICTED from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ... >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf eventlogs_date_restricted.csv --sd 2026-01-09T00:00:00 --ed 2026-01-13T23:59:59 >> %LOG_DIRECTORY%\evtxecmd_date_restricted.log 2>&1
+
 echo [*] Running Hayabusa csv-timeline on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv
 echo [*] Running Hayabusa csv-timeline on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv >> %MAIN_LOGFILE%
 C:\Tools\hayabusa-2.18.0-all-platforms\hayabusa-2.18.0-win-x64.exe csv-timeline --directory %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --output "%OUTPUTS%\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard >> %LOG_DIRECTORY%\hayabusa.log 2>&1
