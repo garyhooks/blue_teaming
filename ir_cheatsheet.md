@@ -192,6 +192,10 @@ Process in Axiom
 ## Step 7
 Index in Splunk
 
+## SRUM
+
+> C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f E:\Windows\System32\sru\SRUDB.dat -r E:\Windows\System32\config\SOFTWARE --csv D:\
+
 ## Prefetch file processing:
 
 > C:\Tools\Get-ZimmermanTools\PECmd.exe -d "D:\sftp\spider\Prefetch" --csv "D:\sftp\outputs\prefetch.csv"
