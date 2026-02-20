@@ -98,8 +98,8 @@ echo [*] Obtaining Prefetch files using PECmd.exe on %EVIDENCE_DIRECTORY%\%DRIVE
 echo [*] Obtaining Prefetch files using PECmd.exe on %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch. Outputs saved to %OUTPUTS%\prefetch\ >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\PECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch --csv %OUTPUTS%\prefetch >> %LOG_DIRECTORY%\PECmd.log 2>&1
 
-echo [*] Obtaining Scrum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\
-echo [*] Obtaining Scrum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\ >> %MAIN_LOGFILE%
+echo [*] Obtaining Srum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\
+echo [*] Obtaining Srum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\ >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat -r %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE --csv %OUTPUTS%\srudb\ >> %LOG_DIRECTORY%\ScrumECmd.log 2>&1
 
 echo [*] Obtaining LNK files from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Users\. Outputs saved to %OUTPUTS%\RecentLNKfiles.csv
