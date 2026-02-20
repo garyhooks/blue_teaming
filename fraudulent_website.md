@@ -2,4 +2,4 @@
 
 # Information Gathering
 
-[ ] fdsa
+1. Centralops search to identify IP 
