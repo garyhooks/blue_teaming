@@ -5,74 +5,75 @@
 1. Confirm site status using:
    curl -I http://DOMAIN
    curl -I https://DOMAIN
-
-2. Identify A record:
+   
+3. Identify A record (or use centralops.net)
    dig DOMAIN
-   Record IP address and TTL.
+   Record IP address and TTL
 
-3. Identify hosting provider:
+4. Identify hosting provider:
    whois IP
    or
    whois -h whois.cymru.com " -v IP"
 
-4. Report to hosting provider abuse contact with:
+5. Report to hosting provider abuse contact with:
    - Full URL
    - IP address
    - Timestamps (UTC)
    - Screenshots or evidence
 
-5. Identify registrar:
+6. Identify registrar (available on centralops.net also)
    whois DOMAIN
-   Submit registrar abuse report.
+   Submit registrar abuse report
 
-6. Submit URL/domain to:
+7. Submit URL/domain to:
    - Google Safe Browsing
    - Microsoft Security Intelligence
    - Netcraft
+   - PhishTank (NOTE: account is needed and at present unable to signup due to new registrations being disabled)
 
-7. Search VirusTotal for domain and URL.
+8. Search VirusTotal for domain and URL
    Record:
    - Detection ratio
    - First submission date
+   - Obtain historical DNS by checking Relationships -> Resolutions tab - record all historical IPs and dates
+   - Also note the community comments 
 
-8. Screenshot key findings for evidence preservation.
+9. Search AbuseIPDB for reputational information
+
+10. Screenshot key findings for evidence preservation.
 
 
 ## Domain and DNS Analysis
 
-1. Review A record and TTL:
-   dig DOMAIN
-
-2. Check for AAAA and CNAME:
+1. Review DNS record and TTL (or check centralops)
+   dig DOMAIN A
    dig DOMAIN AAAA
    dig DOMAIN CNAME
 
-3. Check for wildcard DNS:
-   dig RANDOMSTRING.DOMAIN
-
-   If NXDOMAIN → no wildcard.
-   If resolves → wildcard likely configured.
-
-4. Identify nameservers:
+2. Identify nameservers:
    dig DOMAIN NS
 
-5. Check DNSSEC presence:
+3. Check DNSSEC presence:
    dig DOMAIN DS
    If no DS record → DNSSEC not enabled.
 
-6. Obtain historical DNS:
-   VirusTotal → Relationships → Resolutions
-   Record all historical IPs and dates.
 
-7. Record domain registration details:
+4. Check for wildcard DNS:
+   dig RANDOMSTRING.DOMAIN
+
+   If NXDOMAIN → no wildcard
+   If resolves → wildcard likely configured
+      Where a wildcard DNS record is configured, non-existent subdomains will still resolve, which can support scalable phishing deployment and is behaviour commonly seen in phishing campaign
+
+5. Record domain registration details:
    whois DOMAIN
    Note:
    - Creation date
    - Updated date
    - Expiry date
+   Pay attention to the times too - where they are seconds apart it can support it being an automated action
 
-8. Compare domain creation date with first malicious sighting.
-
+6. Compare domain creation date with first malicious sighting - is there any association?
 
 ## IP and Infrastructure Review
 
@@ -89,47 +90,40 @@
    DNSlytics
    ViewDNS
 
-4. Search IP in:
+4. Search IP in:  (accounts needed with these platforms)
    Shodan
    Censys
 
 5. Assess hosting churn:
-   List historical IPs from VirusTotal.
-   Note frequency of changes and hosting providers.
+   List historical IPs from VirusTotal
+   Note frequency of changes and hosting providers
+   Can indicate wide-spread use or involvement with threat groups
 
-6. Review certificate history:
-   Use Censys.
+6. Review certificate history in Censys:
+   Use Censys
    Record:
    - Issuer
    - Validity dates
    - Rotation frequency
-
-7. Search for certificate fingerprint reuse:
-   Use Censys Certificates dataset.
-   Query fingerprint_sha256="VALUE"
+   - Search for certificate fingerprint reuse
+   - Query fingerprint_sha256="VALUE" (this has mixed results and I think it's because the interface recently changed)
 
 
 ## Email Infrastructure Review
 
-1. Identify MX records:
-   dig DOMAIN MX
+1. Identify relevant records:
+   dig DOMAIN MX  (Mail servers)
+   dig DOMAIN TXT  (SPF record)
+   dig _dmarc.DOMAIN TXT  (DMARC check)
+   dig selector._domainkey.DOMAIN TXT   (DKIM - is selector known from the email header?)
 
-2. Identify SPF record:
-   dig DOMAIN TXT
-
-3. Check DMARC:
-   dig _dmarc.DOMAIN TXT
-
-4. Check DKIM (if selector known from email header):
-   dig selector._domainkey.DOMAIN TXT
-
-5. If phishing email observed:
+2. If phishing email observed:
    - Extract full email headers
    - Confirm SPF result
    - Identify sending IP
    - Confirm provider alignment
 
-6. Determine whether domain is mail-enabled and capable of outbound phishing.
+3. Determine whether domain is mail-enabled and capable of outbound phishing.
 
 
 ## Exposure and Operational Assessment
@@ -155,3 +149,7 @@
    - Site offline
    - Reports submitted
    - No further active infrastructure observed.
+
+7. Search google for the site URL, IP. Utilise combined keywords alongside this such as "scam", "abuse", "malware" etc - is the site reported online anywhere else?
+   
+8. Consider dark web searches - although not always required and is dependent on the situation and circumstances
