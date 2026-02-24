@@ -28,6 +28,24 @@ Then when you add the new data to Splunk choose this as the source type
 
 > | eval CustomTimestamp=strftime(_time, "%Y-%m-%d %H:%M:%S")
 
+### Extract fields to search
+
+This extracts two fields named sent_bytes and rcvd_bytes
+Outputs the bytes as in GB
+```
+index=blah 
+dst_ip!=8.8.8.8 dst_ip!=8.8.4.4 dst_ip!=10.* dst_ip!=172.16.* dst_ip!=192.168.*
+| rex field=info_5 "sent_bytes=(?<sent_bytes>\d+)"
+| rex field=info_5 "rcvd_bytes=(?<rcvd_bytes>\d+)"
+| eval total_bytes=sent_bytes+rcvd_bytes
+| stats sum(total_bytes) as bytes by dst_ip
+| eval GB=round(bytes/1024/1024/1024, 3)
+| sort -GB
+```
+
+
+
+
 ### M365 Email Parsing
 
 ```
@@ -49,11 +67,26 @@ Change default search range:
 
 > http://127.0.0.1:8000/en-US/manager/system/searchprefs
 
-Overview of timeline:
+### Overview of timeline:
 
 > index=events | convert timeformat="%Y-%m-%d" ctime(_time) AS date | timechart count by date
 
-Line chart:
+#### Timechart 
+
+Create a timechart based on the total_bytes transferred within a 5 minute window 
+```
+index=blah
+dst_ip!=8.8.8.8
+| rex field=info_5 "sent_bytes=(?<sent_bytes>\d+)"
+| rex field=info_5 "rcvd_bytes=(?<rcvd_bytes>\d+)"
+| eval total_bytes=sent_bytes+rcvd_bytes
+| eval _time=strptime(update_time, "%Y-%m-%d %H:%M:%S")
+| timechart sum(total_bytes) as transfer span=5m
+```
+
+
+
+#### Line chart:
 
 ```
 index=events ComputerName=* Account_Name=*** EventCode IN ($event_code_input$) | convert timeformat="%Y-%m-%d" ctime(_time) AS date 
@@ -68,7 +101,7 @@ index=events ComputerName=* Account_Name=*** EventCode IN ($event_code_input$) |
 
 Good commands - https://github.com/EvolvingSysadmin/Splunk-Tools
 
-Create a Visualization of activity based on date:
+#### Create a Visualization of activity based on date:
 
 > index=blah EventCode=4625 | convert timeformat="%Y-%m-%d" ctime(_time) AS date | timechart count by date
 
