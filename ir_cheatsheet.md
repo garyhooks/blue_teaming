@@ -36,13 +36,21 @@ This also obtains the Volume Shadow copy (--vss)
 :: DRIVE_LETTER - The drive letter where evidence (e.g., event logs, registry) is stored.
 :: OUTPUTS - Location of results and CSV files.
 
-set EVIDENCE_DIRECTORY=D:\laptop123\
-set DRIVE_LETTER=C
+set EVIDENCE_DIRECTORY=D:\testing_kape_output
+set DRIVE_LETTER=E
 set OUTPUTS=%EVIDENCE_DIRECTORY%\OUTPUTS
-set LOG_DIRECTORY=%EVIDENCE_DIRECTORY%\OUTPUTS\LOGS\
+
+:: THE FOLLOWING IS FOR EVENT LOG PARSING WHERE YOU WANT TO FOCUS ONLY ON SPECIFIC DATES
+:: IGNORE IF YOU WANT TO OR USE THESE TO HELP NARROW DOWN THE EVENT LOGS AND REMOVE EXCESS ENTRIES
+:: OUTPUT WILL BE AS A SEPARATE EVENT LOG FILE NAMED eventlogs_date_restricted.csv
+set SD=2025-12-01T00:00:00
+set ED=2025-12-06T23:59:59
+
+set LOG_DIRECTORY=%EVIDENCE_DIRECTORY%\OUTPUT_LOGS\
 set MAIN_LOGFILE=%LOG_DIRECTORY%\log.txt
 
 if not exist %OUTPUTS% mkdir %OUTPUTS%
+if not exist %OUTPUTS%\takajo mkdir %OUTPUTS%\takajo
 if not exist %LOG_DIRECTORY% mkdir %LOG_DIRECTORY%
 
 :: ==============================
@@ -66,9 +74,6 @@ echo ===========================================================
 echo. 
 echo. >> %MAIN_LOGFILE%
 
-:: Here is a date restricted option - commented out for now 
-:: C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf "eventlogs--date_restricted.csv" --sd 2024-10-01T00:00:00 --ed 2024-10-20T23:59:59
-
 
 echo [*] Outputting Windows Event Logs from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ...
 echo [*] Outputting Windows Event Logs from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ... >> %MAIN_LOGFILE%
@@ -76,15 +81,46 @@ C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE
 
 echo [*] Outputting Windows Event Logs DATE RESTRICTED %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ...
 echo [*] Outputting Windows Event Logs DATE RESTRICTED from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ to %OUTPUTS%\eventlogs.csv now ... >> %MAIN_LOGFILE%
-C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf eventlogs_date_restricted.csv --sd 2026-01-09T00:00:00 --ed 2026-01-13T23:59:59 >> %LOG_DIRECTORY%\evtxecmd_date_restricted.log 2>&1
+C:\Tools\Get-ZimmermanTools\EvtxECmd\EvtxECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --csv %OUTPUTS% --csvf eventlogs_date_restricted.csv --sd %SD% --ed %ED% >> %LOG_DIRECTORY%\evtxecmd_date_restricted.log 2>&1
+
+::
+:: DOWNLOADING HAYABUSA TO C:\Windows\Temp
+::
+
+cd C:\Windows\Temp
+rd /s /q hayabusa 2>nul
+del hayabusa.zip 2>nul
+wget https://github.com/Yamato-Security/hayabusa/releases/download/v3.8.0/hayabusa-3.8.0-all-platforms.zip -O hayabusa.zip --no-check-certificate
+unzip hayabusa.zip -d hayabusa
+
+::
+:: Creating a jsonl file which can be used by the Takajo application 
+::
+echo [*] Creating Hayabusa JSON Timeline ready for further events to be parsed and identified. Using event logs - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\timeline.jsonl
+echo [*] Creating Hayabusa JSON Timeline ready for further events to be parsed and identified. Using event logs - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\timeline.jsonl >> %MAIN_LOGFILE%
+C:\Windows\Temp\hayabusa\hayabusa-3.8.0-win-x64.exe json-timeline -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs -L -o %OUTPUTS%\takajo\timeline.jsonl -w -p verbose  >> %LOG_DIRECTORY%\hayabusa.log 2>&1
+
+::
+:: DOWNLOADING Takajo to C:\Windows\Temp
+::
+rd /s /q takajo 2>nul
+del takajo.zip 2>nul
+wget https://github.com/Yamato-Security/takajo/releases/download/v2.15.1/takajo-2.15.1-win-x64.zip -O takajo.zip --no-check-certificate
+unzip takajo.zip -d takajo
+
+::
+:: Running Takajo with automagic command which executes as many options as possible and outputs into chosen directory 
+:: For some reason you MUST run takajo from inside the directory where it resides - rather than using an absolute path
+cd C:\Windows\Temp\takajo
+takajo-2.15.1-win-x64.exe automagic -t %OUTPUTS%\takajo\timeline.jsonl -o %OUTPUTS%\takajo\results
 
 echo [*] Running Hayabusa csv-timeline on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv
 echo [*] Running Hayabusa csv-timeline on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv >> %MAIN_LOGFILE%
-C:\Tools\hayabusa-2.18.0-all-platforms\hayabusa-2.18.0-win-x64.exe csv-timeline --directory %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --output "%OUTPUTS%\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard >> %LOG_DIRECTORY%\hayabusa.log 2>&1
+C:\Windows\Temp\hayabusa\hayabusa-3.8.0-win-x64.exe csv-timeline --directory %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --output "%OUTPUTS%\hayabusa.csv" --exclude-status deprecated,unsupported --min-level medium --no-wizard >> %LOG_DIRECTORY%\hayabusa.log 2>&1
 
 echo [*] Running Hayabusa logon-summary on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv
 echo [*] Running Hayabusa logon-summary on event log CSV file - located at %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\hayabusa.csv >> %MAIN_LOGFILE%
-C:\Tools\hayabusa-2.18.0-all-platforms\hayabusa-2.18.0-win-x64.exe logon-summary --directory %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --output "%OUTPUTS%\hayabusa-logon-summary.csv" --UTC >> %LOG_DIRECTORY%\hayabusa.log 2>&1
+C:\Windows\Temp\hayabusa\hayabusa-3.8.0-win-x64.exe logon-summary --directory %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\ --output "%OUTPUTS%\hayabusa-logon-summary.csv" --UTC >> %LOG_DIRECTORY%\hayabusa.log 2>&1
 
 echo [*] Running AppCompatCacheParser.exe on event logs inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\AppCompatCache.csv
 echo [*] Running AppCompatCacheParser.exe on event logs inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\. Outputs saved to %OUTPUTS%\AppCompatCache.csv >> %MAIN_LOGFILE%
@@ -98,8 +134,8 @@ echo [*] Obtaining Prefetch files using PECmd.exe on %EVIDENCE_DIRECTORY%\%DRIVE
 echo [*] Obtaining Prefetch files using PECmd.exe on %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch. Outputs saved to %OUTPUTS%\prefetch\ >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\PECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\Prefetch --csv %OUTPUTS%\prefetch >> %LOG_DIRECTORY%\PECmd.log 2>&1
 
-echo [*] Obtaining Srum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\
-echo [*] Obtaining Srum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\ >> %MAIN_LOGFILE%
+echo [*] Obtaining Scrum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\
+echo [*] Obtaining Scrum (System Resource Utilization Monitor) on SRUDB.dat inside %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat and hive %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE. Outputs saved to %OUTPUTS%\srudb\ >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\SrumECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\SRU\SRUDB.dat -r %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\config\SOFTWARE --csv %OUTPUTS%\srudb\ >> %LOG_DIRECTORY%\ScrumECmd.log 2>&1
 
 echo [*] Obtaining LNK files from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Users\. Outputs saved to %OUTPUTS%\RecentLNKfiles.csv
@@ -113,6 +149,25 @@ C:\Tools\Get-ZimmermanTools\MFTECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$
 echo [*] Obtaining contents of $Recycle.Bin from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\. Output saved to %OUTPUTS%\recycle_bin.csv
 echo [*] Obtaining contents of $Recycle.Bin from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\. Output saved to %OUTPUTS%\recycle_bin.csv >> %MAIN_LOGFILE%
 C:\Tools\Get-ZimmermanTools\RBCmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Recycle.Bin\ --csv %OUTPUTS%\ --csvf %OUTPUTS%\recycle_bin.csv >> %LOG_DIRECTORY%\RBCmd.log 2>&1
+
+:: USN JOURNAL
+echo [*] Obtaining UsnJrnl ($J) with MFT References from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Extend\$J. Output saved to %OUTPUTS%\usnjrnl-with-mft.csv
+echo [*] Obtaining UsnJrnl ($J) with MFT References from %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Extend\$J. Output saved to %OUTPUTS%\usnjrnl-with-mft.csv >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\MFTECmd.exe -f %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$Extend\$J -m %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\$MFT --csv %OUTPUTS% --csvf usnjrnl-with-mft.csv
+
+:: CHAINSAW
+cd C:\Windows\Temp
+rd /s /q chainsaw 2>nul
+del chainsaw.zip 2>nul
+wget https://github.com/WithSecureLabs/chainsaw/releases/download/v2.14.1/chainsaw_all_platforms+rules+examples.zip -O chainsaw.zip --no-check-certificate
+unzip chainsaw.zip
+C:\Windows\Temp\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe hunt %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs\Security.evtx -s C:\Windows\Temp\chainsaw\sigma\ --mapping C:\Windows\Temp\chainsaw\mappings\sigma-event-logs-all.yml -r C:\Windows\Temp\chainsaw\rules\ --csv --output %OUTPUTS%\chainsaw\ --skip-errors
+C:\Windows\Temp\chainsaw\chainsaw_x86_64-pc-windows-msvc.exe search EncodedCommand %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%\Windows\System32\winevt\logs --output %OUTPUTS%\chainsaw\search_for_EncodedCommand.txt --skip-errors
+
+:: ShellBags 
+echo [*] Obtaining all Shellbag artefacts in %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%. Output saved to %OUTPUTS%\shellbags\
+echo [*] Obtaining all Shellbag artefacts in %EVIDENCE_DIRECTORY%\%DRIVE_LETTER%. Output saved to %OUTPUTS%\shellbags\ >> %MAIN_LOGFILE%
+C:\Tools\Get-ZimmermanTools\SBECmd.exe -d %EVIDENCE_DIRECTORY%\%DRIVE_LETTER% --csv %OUTPUTS%\shellbags\ --csvf shellbags.csv
 
 echo.
 echo ================================================================================
