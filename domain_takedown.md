@@ -49,7 +49,13 @@
 
 10. Search AbuseIPDB for reputational information
 
-11. Screenshot key findings for evidence preservation
+11. View and save source code of the index page. In addition, identify any clear indications or differences from original, such as tracking cookies, embedded content, etc.
+
+12. Identify underlying technology and framework (such as Wordpress, templating system, Wix)
+	- Check for presence of /wp-admin directory or other pages which could indicate technology 
+	- Check Wappalyzer (Chrome Add-on) which can identify most of this information
+
+13. Screenshot key findings for evidence preservation
 
 
 ## Domain and DNS Analysis
