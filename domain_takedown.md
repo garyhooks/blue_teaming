@@ -5,15 +5,18 @@
 1. Confirm site status using:
    curl -I http://DOMAIN
    curl -I https://DOMAIN
-   
-3. Identify A record (or use centralops.net)
+
+2. Identify A record (or use centralops.net)
    dig DOMAIN
    Record IP address and TTL
 
-4. Identify hosting provider:
+3. Identify hosting provider:
    whois IP
    or
    whois -h whois.cymru.com " -v IP"
+
+4. Identify registrar (available on centralops.net also)
+   whois DOMAIN
 
 5. Report to hosting provider's abuse team with:
    - Full URL
@@ -21,31 +24,32 @@
    - Timestamps (UTC)
    - Screenshots or evidence
 
-6. Identify registrar (available on centralops.net also)
-   whois DOMAIN
-   Submit registrar abuse report
+6. Submit registrar abuse report
 
-7. Report malicious usage to the following entites:
-   - Google Safe Browsing
-   - Microsoft Security Intelligence
-   - Netcraft
-   - PhishTank (NOTE: account is needed and at present unable to signup due to new registrations being disabled)
-   - NCSC - https://www.ncsc.gov.uk/collection/phishing-scams/report-scam-website
-   - Anti-Phishing Working Group (APWG) — reporting to eCrime using the email reportphishing@apwg.org. This ensures the domain is shared amongst threat intelligence feeds used by browsers and security vendors
+7. Report malicious usage to the following entities:
+
+   A. Submit to Google Safe Browsing  
+   B. Submit to Microsoft Security Intelligence  
+   C. Submit to Netcraft  
+   D. Submit to PhishTank (NOTE: account is needed and at present unable to signup due to new registrations being disabled)  
+   E. Submit to NCSC - https://www.ncsc.gov.uk/collection/phishing-scams/report-scam-website  
+   F. Submit to Anti-Phishing Working Group (APWG) — reporting to eCrime using the email reportphishing@apwg.org. This ensures the domain is shared amongst threat intelligence feeds used by browsers and security vendors  
+
+8. Conditional reporting where applicable:
    - Cloudflare - often sites are hosted behind the cloudflare infrastructure. Where that's the case, report to them - https://abuse.cloudflare.com/
-   - Certificate Authority - they can revoke the certificate which will not disable the site, but will make it appear less credible and not fully secured 
+   - Certificate Authority - they can revoke the certificate which will not disable the site, but will make it appear less credible and not fully secured
    - ICANN - If a site has not been removed or if the registrar is ignoring this, report to ICANN - https://icann-nsp.my.site.com/compliance/s/abuse-domain
 
-8. Search VirusTotal for domain and URL
+9. Search VirusTotal for domain and URL
    Record:
    - Detection ratio
    - First submission date
    - Obtain historical DNS by checking Relationships -> Resolutions tab - record all historical IPs and dates
-   - Also note the community comments 
+   - Also note the community comments
 
-9. Search AbuseIPDB for reputational information
+10. Search AbuseIPDB for reputational information
 
-10. Screenshot key findings for evidence preservatio,
+11. Screenshot key findings for evidence preservation
 
 
 ## Domain and DNS Analysis
@@ -62,13 +66,12 @@
    dig DOMAIN DS
    If no DS record → DNSSEC not enabled.
 
-
 4. Check for wildcard DNS:
    dig RANDOMSTRING.DOMAIN
 
    If NXDOMAIN → no wildcard
    If resolves → wildcard likely configured
-      Where a wildcard DNS record is configured, non-existent subdomains will still resolve, which can support scalable phishing deployment and is behaviour commonly seen in phishing campaign
+      Where a wildcard DNS record is configured, non-existent subdomains will still resolve, which can support scalable phishing deployment and is behaviour commonly seen in phishing campaigns
 
 5. Record domain registration details:
    whois DOMAIN
@@ -80,6 +83,7 @@
 
 6. Compare domain creation date with first malicious sighting - is there any association?
 
+
 ## IP and Infrastructure Review
 
 1. Confirm ASN:
@@ -90,13 +94,11 @@
    or
    dnslytics ASN search
 
-3. Perform reverse IP lookup:
-   VirusTotal
-   DNSlytics
-   ViewDNS
-
-4. Pivot for related domains and associated campaigns:
-   
+3. Perform reverse IP lookup and pivot for related domains and associated campaigns:
+   - Use the results from above (Reverse IP lookup on VirusTotal, DNSlytics, ViewDNS) to locate other domains on the same IP
+   - Domains sharing the same nameservers — DNSlytics, SecurityTrails
+   - VirusTotal Graph view for infrastructure relationships
+   - Look for domains registered in clusters with very similar timestamps — this can indicate automated campaign registration
 
 4. Search IP in:  (accounts needed with these platforms)
    Shodan
@@ -114,7 +116,7 @@
    - Validity dates
    - Rotation frequency
    - Search for certificate fingerprint reuse
-   - Query fingerprint_sha256="VALUE" (this has mixed results and I think it's because the interface recently changed)
+   - Query fingerprint_sha256="VALUE"
 
 
 ## Email Infrastructure Review
@@ -153,11 +155,11 @@
    - Shared hosting
    - Structured campaign
 
-6. Document findings and formally close investigation if:
+6. Search google for the site URL, IP. Utilise combined keywords alongside this such as "scam", "abuse", "malware" etc - is the site reported online anywhere else?
+
+7. Consider dark web searches - although not always required and is dependent on the situation and circumstances
+
+8. Document findings and formally close investigation if:
    - Site offline
    - Reports submitted
    - No further active infrastructure observed.
-
-7. Search google for the site URL, IP. Utilise combined keywords alongside this such as "scam", "abuse", "malware" etc - is the site reported online anywhere else?
-   
-8. Consider dark web searches - although not always required and is dependent on the situation and circumstances
