@@ -15,7 +15,7 @@
    or
    whois -h whois.cymru.com " -v IP"
 
-5. Report to hosting provider abuse contact with:
+5. Report to hosting provider's abuse team with:
    - Full URL
    - IP address
    - Timestamps (UTC)
@@ -25,11 +25,16 @@
    whois DOMAIN
    Submit registrar abuse report
 
-7. Submit URL/domain to:
+7. Report malicious usage to the following entites:
    - Google Safe Browsing
    - Microsoft Security Intelligence
    - Netcraft
    - PhishTank (NOTE: account is needed and at present unable to signup due to new registrations being disabled)
+   - NCSC - https://www.ncsc.gov.uk/collection/phishing-scams/report-scam-website
+   - Anti-Phishing Working Group (APWG) — reporting to eCrime using the email reportphishing@apwg.org. This ensures the domain is shared amongst threat intelligence feeds used by browsers and security vendors
+   - Cloudflare - often sites are hosted behind the cloudflare infrastructure. Where that's the case, report to them - https://abuse.cloudflare.com/
+   - Certificate Authority - they can revoke the certificate which will not disable the site, but will make it appear less credible and not fully secured 
+   - ICANN - If a site has not been removed or if the registrar is ignoring this, report to ICANN - https://icann-nsp.my.site.com/compliance/s/abuse-domain
 
 8. Search VirusTotal for domain and URL
    Record:
@@ -40,7 +45,7 @@
 
 9. Search AbuseIPDB for reputational information
 
-10. Screenshot key findings for evidence preservation.
+10. Screenshot key findings for evidence preservatio,
 
 
 ## Domain and DNS Analysis
@@ -89,6 +94,9 @@
    VirusTotal
    DNSlytics
    ViewDNS
+
+4. Pivot for related domains and associated campaigns:
+   
 
 4. Search IP in:  (accounts needed with these platforms)
    Shodan
