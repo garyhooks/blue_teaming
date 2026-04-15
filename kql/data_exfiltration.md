@@ -16,7 +16,7 @@ DeviceNetworkEvents
     by InitiatingProcessAccountName, DeviceName
 | where ConnectionCount > 50
 | order by ConnectionCount desc
-```kql
+```
 
 Similar to above, but include the user account information
 
