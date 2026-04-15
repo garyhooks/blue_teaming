@@ -8,8 +8,12 @@ DeviceFileEvents
 MinTimestamp = min(Timestamp),
 MaxTimestamp = max(Timestamp)
 ```
+## Find tables where data exists
 
-
+```kql
+search ("dangerous_ioc")
+| distinct $table
+```
 
 ## Date and Time
 
