@@ -14,6 +14,13 @@ MaxTimestamp = max(Timestamp)
 search ("dangerous_ioc")
 | distinct $table
 ```
+Filter this further to find those which are populated with data:
+
+```kql
+union withsource=TableName *
+| where isnotempty(RemoteUrl)
+| distinct TableName
+```
 
 ## Date and Time
 
