@@ -97,3 +97,18 @@ SecurityAlert
     Hosts=make_list_if(HostName, isnotempty(HostName))
     by VendorOriginalId
 ```
+
+Search SigninLogs for specific Client IPs and output summary of linked users as table:
+```
+let client_ips = dynamic(["1.2.3.4", "5.6.7.8", "123.234.345.2"]);
+let startTime = datetime(2026-01-01T00:00:00Z);
+let endTime = datetime(2026-04-07T23:59:59Z);
+SigninLogs
+| where IPAddress in (client_ips) 
+| where TimeGenerated between (startTime .. endTime)
+| where ResultSignature == "FAILURE"
+| summarize 
+    Count = count(),
+    Users = make_set(UserPrincipalName)
+    by IPAddress
+```
