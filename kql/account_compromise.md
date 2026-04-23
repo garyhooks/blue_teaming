@@ -3,13 +3,23 @@
 **Sessions where multiple user agents and IPs were used by a single user within a short window of time**
 
 ```kql
+let startTime = datetime(2026-02-17T00:00:00Z);
+let endTime = datetime(2026-04-07T23:59:59Z);
+let upn = "donald.trump";
 SigninLogs
-| where UserPrincipalName == "donald.trump@thewhitehouse.com"
-| project TimeGenerated, IPAddress, Location = tostring(LocationDetails.city),
-          OS = tostring(DeviceDetail.operatingSystem),
-          Browser = tostring(DeviceDetail.browser),
-          ClientAppUsed, SessionId, CorrelationId
-| order by TimeGenerated desc
+| where UserPrincipalName has upn
+| where TimeGenerated between (startTime .. endTime)
+| summarize
+    Count = count(),
+    DistinctIPs = dcount(IPAddress),
+    DistinctUserAgents = dcount(UserAgent),
+    IPs = make_set(IPAddress, 5),
+    UserAgents = make_set(UserAgent, 5),
+    FirstSeen = min(TimeGenerated),
+    LastSeen = max(TimeGenerated)
+  by bin(TimeGenerated, 1h), SessionId
+| where DistinctIPs > 1 or DistinctUserAgents > 1
+| order by FirstSeen desc
 ```
 
 **Impossible travel or near-simultaneous logins from different locations**
