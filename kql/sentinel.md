@@ -78,7 +78,13 @@ union signins, kv
 | order by TimeGenerated asc
 ```
 
+## Search for Principal Signins, summarizing output of Count, Unique SPNs, SPNames, APP IDs, Source IPs and First Seen/Last Seen
 
-
-
+```kql
+AADServicePrincipalSignInLogs 
+| where TimeGenerated >= ago(30d) and (IPAddress startswith "123.456." or IPAddress startswith "123.456." or IPAddress startswith "123.456.") | where ResultType == "0"
+| summarize SuccessfulSignIns=count(), UniqueSPNs=dcount(ServicePrincipalId), SPNames=make_set(ServicePrincipalName), AppIDs=make_set(AppId), SourceIPs=make_set(IPAddress), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) by ResourceDisplayName
+| project ResourceDisplayName, UniqueSPNs, SuccessfulSignIns, FirstSeen, LastSeen, SPNames
+| order by UniqueSPNs desc
+```
 
