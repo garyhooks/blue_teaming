@@ -1,7 +1,6 @@
 
 
 ## Search for Sign-Ins and output First/Last used dates 
-
 ```
 let badIps = dynamic(["123.123.123.1","1.2.3.4");
 AADServicePrincipalSignInLogs
@@ -17,7 +16,6 @@ AADServicePrincipalSignInLogs
 ```
 
 ## Search Graph logs for App IDs of interest - joining with Principal Names
-
 ```
 let myAppIds = dynamic ([
     "123456-123-123", 
@@ -61,8 +59,24 @@ AzureDiagnostics
 | sort by TimeUTC asc
 ```
 
+## Look for Key Values used during authentication
 
-
+```
+let serviceId = "123-456-789";
+let signins = AADServicePrincipalSignInLogs
+| where TimeGenerated between (datetime(2026-10-27 00:10) .. datetime(2026-10-27 00:16))
+| where ServicePrincipalId == serviceId
+| project TimeGenerated, Source="SignIn", IP=IPAddress,
+          Detail=strcat(ResourceDisplayName, " | key ", ServicePrincipalCredentialKeyId);
+let kv = AzureDiagnostics
+| where TimeGenerated between (datetime(2026-10-27 00:10) .. datetime(2026-10-27 00:16))
+| where ResourceProvider == "MICROSOFT.KEYVAULT" and Category == "AuditEvent"
+| where identity_claim_oid_g == serviceId
+| project TimeGenerated, Source="KeyVault", IP=CallerIPAddress,
+          Detail=strcat(OperationName, " | ", Resource);
+union signins, kv
+| order by TimeGenerated asc
+```
 
 
 
