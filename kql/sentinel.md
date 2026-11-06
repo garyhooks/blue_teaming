@@ -13,7 +13,7 @@ AADServicePrincipalSignInLogs
 | where First < datetime(2026-10-27 02:00)
 | extend First=format_datetime(First, "yyyy-MM-dd HH:mm:ss"), Last=format_datetime(Last, "yyyy-MM-dd HH:mm:ss")
 | order by First asc
-''''
+'''
 
 ## Search Graph logs for App IDs of interest - joining with Principal Names
 ```
