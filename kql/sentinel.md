@@ -1,6 +1,6 @@
 
 
-# Search for Sign-Ins and output First/Last used dates 
+## Search for Sign-Ins and output First/Last used dates 
 
 ```
 let badIps = dynamic(["123.123.123.1","1.2.3.4");
@@ -16,7 +16,7 @@ AADServicePrincipalSignInLogs
 | order by First asc
 ```
 
-# Search Graph logs for App IDs of interest - joining with Principal Names
+## Search Graph logs for App IDs of interest - joining with Principal Names
 
 ```
 let myAppIds = dynamic ([
@@ -38,7 +38,7 @@ MicrosoftGraphActivityLogs
 | sort by TimeUTC asc
 ```
 
-# Search for KeyVault access in AzureDiagnostics 
+## Search for KeyVault access in AzureDiagnostics 
 
 ```
 let PrincipalNames =
