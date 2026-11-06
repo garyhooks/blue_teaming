@@ -16,7 +16,7 @@ AADServicePrincipalSignInLogs
 ```
 
 ## Search Graph logs for App IDs of interest - joining with Principal Names
-```
+```kql
 let myAppIds = dynamic ([
     "123456-123-123", 
 ]);
@@ -38,7 +38,7 @@ MicrosoftGraphActivityLogs
 
 ## Search for KeyVault access in AzureDiagnostics 
 
-```
+```kql
 let PrincipalNames =
     AADServicePrincipalSignInLogs
     | where TimeGenerated between (datetime(2026-10-26 23:50) .. datetime(2026-10-27 14:01))
@@ -61,7 +61,7 @@ AzureDiagnostics
 
 ## Look for Key Values used during authentication
 
-```
+```kql
 let serviceId = "123-456-789";
 let signins = AADServicePrincipalSignInLogs
 | where TimeGenerated between (datetime(2026-10-27 00:10) .. datetime(2026-10-27 00:16))
