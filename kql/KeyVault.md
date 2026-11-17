@@ -9,6 +9,6 @@ AzureDiagnostics
 | where ResourceType == "VAULTS" and ResultType == "Success" 
 | where OperationName in (operationlist)
 //| project TimeGenerated,  ResourceGroup,  SubscriptionId, ResultType,  KeyVaultName=Resource,  KeyVaultTarget=id_s,  Actor=identity_claim_upn_s,  IPAddressofActor=CallerIPAddress,  OperationName
-| summarize OperationCount=count(), ResourceGroupsAffected=make_set(ResourceGroup), Operations=make_set(OperationName) by identity_claim_upn_s
+| summarize OperationCount=count(), ResourceGroupsAffected=make_set(ResourceGroup), Operations=make_set(OperationName), IPUniqueCount=dcount(CallerIPAddress), IPs=make_set(CallerIPAddress) by identity_claim_upn_s
 ```
 
