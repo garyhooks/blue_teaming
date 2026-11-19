@@ -22,6 +22,15 @@ union withsource=TableName *
 | distinct TableName
 ```
 
+```kql
+union withsource = SourceTable
+    SigninLogs, AADNonInteractiveUserSignInLogs, AADServicePrincipalSignInLogs,
+    AuditLogs, MicrosoftGraphActivityLogs
+| where TimeGenerated > ago(1d)
+| summarize Events = count(), Latest = max(TimeGenerated) by SourceTable
+```
+
+
 ## Date and Time
 
 #### Set Time Parameters 
