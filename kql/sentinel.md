@@ -56,6 +56,42 @@ Incidents
 ```
 
 
+## Monthly clear-up rates
+
+```kql
+let StartTime = datetime(2026-01-01);
+SecurityIncident
+| where TimeGenerated >= StartTime and CreatedTime >= StartTime
+| summarize arg_max(TimeGenerated, *) by IncidentNumber
+| extend TTR_hr = iff(Status == "Closed", datetime_diff('minute', ClosedTime, CreatedTime) / 60.0, real(null))
+| summarize
+ Created = count(),
+ Closed = countif(Status == "Closed"),
+ TP = countif(Classification == "TruePositive"),
+ BP = countif(Classification == "BenignPositive"),
+ Undetermined = countif(Status == "Closed" and Classification in ("Undetermined", "")),
+ High = countif(Severity == "High"),
+ MedianTTR = round(percentile(TTR_hr, 50), 1)
+ by Month = startofmonth(CreatedTime)
+| extend ClosedDiv = iff(Closed == 0, 1, Closed)
+| order by Month asc
+| project
+ Timestamp = format_datetime(Month, 'yyyy-MM-dd HH:mm:ss.fff'),
+ ['Created'] = Created,
+ ['Closed'] = Closed,
+ ['Closure Rate %'] = round(100.0 * Closed / Created, 1),
+ ['True Positive'] = TP,
+ ['Benign Positive'] = BP,
+ ['Undetermined'] = Undetermined,
+ ['True Positive %'] = round(100.0 * TP / ClosedDiv, 1),
+ ['Benign Positive %'] = round(100.0 * BP / ClosedDiv, 1),
+ ['Undetermined %'] = round(100.0 * Undetermined / ClosedDiv, 1),
+ ['High Severity'] = High,
+ ['Median TTR (h)'] = MedianTTR
+```
+
+
+
 ## Search for Sign-Ins and output First/Last used dates 
 ```kql
 let badIps = dynamic(["123.123.123.1","1.2.3.4");
